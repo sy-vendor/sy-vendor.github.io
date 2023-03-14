@@ -343,7 +343,7 @@ timer模块的大部分函数实现，依赖于一个process，如果过多使�
 容量
 
 作为函数参数传递时：Golang函数参数传递基本上是按值传递的，slice也与之相同，因此传递变量的指针是不同的。
-123456789func main()&#123;    s：= [] int &#123; 1，2，3 &#125;    fmt.Printf(&quot;%p\n&quot;, &amp;s)   // 0x1040a0b0    someFunc(s)&#125;f
+func main()&#123;    s：= [] int &#123; 1，2，3 &#125;    fmt.Printf(&quot;%p\n&quot;, &amp;s)   // 0x1040a0b0    someFunc(s)&#125;f
                       
                     </p>
                     
@@ -374,7 +374,7 @@ timer模块的大部分函数实现，依赖于一个process，如果过多使�
                     <p>
                       
                         在Java中编写抽象代码，使用类型本身的信息创建实例。
-123456789private &lt;T&gt; T createInstance (Class&lt;T&gt; clazz) &#123;     T obj = null;     try &#123;         obj = (T)(Class.forName(clazz.getName()));    &#125; catch (ClassNotFoundExce
+private &lt;T&gt; T createInstance (Class&lt;T&gt; clazz) &#123;     T obj = null;     try &#123;         obj = (T)(Class.forName(clazz.getName()));    &#125; catch (ClassNotFoundExce
                       
                     </p>
                     
@@ -438,7 +438,7 @@ timer模块的大部分函数实现，依赖于一个process，如果过多使�
                     <p>
                       
                         在map with RWMutex和之间进行比较sync.Map。
-读或写测试1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556package mainimport (&quot;fmt&quot;&quot;sync&quot;&quot;time&quot;)type rwMap
+读或写测试 package mainimport (&quot;fmt&quot;&quot;sync&quot;&quot;time&quot;)type rwMap
                       
                     </p>
                     
@@ -506,8 +506,6 @@ timer模块的大部分函数实现，依赖于一个process，如果过多使�
 
 功能模块启动
 调用功能模块中注册的功能
-
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869
                       
                     </p>
                     
