@@ -309,7 +309,7 @@ Goroutines 是 Go 中内置的轻量级多处理线程。它们允许并行执�
                 <div class="col-md-8">
                     <p>
                       
-                        1.Panic例子12345678910111213141516171819202122package mainimport (      &quot;fmt&quot;)func fullName(firstName *string, lastName *string) &#123;      if firstName == nil &#123;        panic(&quot;runtime error: first name
+                        1.Panic例子 package mainimport (      &quot;fmt&quot;)func fullName(firstName *string, lastName *string) &#123;      if firstName == nil &#123;        panic(&quot;runtime error: first name
                       
                     </p>
                     
@@ -340,7 +340,7 @@ Goroutines 是 Go 中内置的轻量级多处理线程。它们允许并行执�
                     <p>
                       
                         编写server.go
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546package mainimport (        &quot;fmt&quot;        &quot;log&quot;        &quot;net&quot;)func handleUDPConnection(conn *net.
+ package mainimport (        &quot;fmt&quot;        &quot;log&quot;        &quot;net&quot;)func handleUDPConnection(conn *net.
                       
                     </p>
                     
@@ -370,7 +370,7 @@ Goroutines 是 Go 中内置的轻量级多处理线程。它们允许并行执�
                 <div class="col-md-8">
                     <p>
                       
-                        12345678func main() &#123;    runtime.GOMAXPROCS(1)    go func() &#123;        for &#123;&#125;    &#125;()    time.Sleep(time.Second)    fmt.Println(&quot;hello go!&quot;)&#125;
+                         func main() &#123;    runtime.GOMAXPROCS(1)    go func() &#123;        for &#123;&#125;    &#125;()    time.Sleep(time.Second)    fmt.Println(&quot;hello go!&quot;)&#125;
 
 执行上面代码，是执行第一个go func的无限循环，还是打印”hello go!
                       
@@ -403,7 +403,7 @@ Goroutines 是 Go 中内置的轻量级多处理线程。它们允许并行执�
                     <p>
                       
                         1、登录服务器使用_upstream_负载均衡
-123456789101112131415161718192021222324252627282930313233upstream  login-server &#123;    server 192.168.2.114:8000;    server 192.168.2.112:8000;&#125;server &#123;    server_name login-server.te
+ upstream  login-server &#123;    server 192.168.2.114:8000;    server 192.168.2.112:8000;&#125;server &#123;    server_name login-server.te
                       
                     </p>
                     
