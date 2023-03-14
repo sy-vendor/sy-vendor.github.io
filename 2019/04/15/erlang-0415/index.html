@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********  Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>Erlang:gen.erl | sy-vendor-blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="sy-vendor-blog">
+    <meta name="author" content="sy">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="sy-vendor-blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/C/" class="animsition-link">C<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/erlang/" class="animsition-link">erlang<small>(17)</small></a></li>
+				    
+				    <li><a href="/categories/go/" class="animsition-link">go<small>(20)</small></a></li>
+				    
+				    <li><a href="/categories/java/" class="animsition-link">java<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/other/" class="animsition-link">other<small>(12)</small></a></li>
+				    
+				</ul>
+        	</li>
+			
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">sy-vendor-blog</a></li>
+                            <li class="nolink"><span>Always </span>Fighting.</li>
+                            
+                            <li><a href="https://github.com/sy-vendor" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2019-04-15T14:47:00.000Z" itemprop="datePublished">
+          2019-04-15
+      </time>
+    
+</span>
+                <h1>Erlang:gen.erl</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<h4 id="gen-erl概述"><a href="#gen-erl概述" class="headerlink" title="gen.erl概述"></a>gen.erl概述</h4><p>gen.erl负责从通用模块调用的更多通用操作，例如gen_server.erl和gen_fsm.erl。具体而言 ：</p>
+<ul>
+<li>功能模块启动</li>
+<li>调用功能模块中注册的功能</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br></pre></td><td class="code"><pre><span class="line">%%</span><br><span class="line">%% %CopyrightBegin%</span><br><span class="line">%%</span><br><span class="line">%% Copyright Ericsson AB 1996-2017. All Rights Reserved.</span><br><span class="line">%%</span><br><span class="line">%% Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span><br><span class="line">%% you may not use this file except in compliance with the License.</span><br><span class="line">%% You may obtain a copy of the License at</span><br><span class="line">%%</span><br><span class="line">%%     http://www.apache.org/licenses/LICENSE-2.0</span><br><span class="line">%%</span><br><span class="line">%% Unless required by applicable law or agreed to in writing, software</span><br><span class="line">%% distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span><br><span class="line">%% WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span><br><span class="line">%% See the License for the specific language governing permissions and</span><br><span class="line">%% limitations under the License.</span><br><span class="line">%%</span><br><span class="line">%% %CopyrightEnd%</span><br><span class="line">%%</span><br><span class="line">-module(gen).</span><br><span class="line">-compile(&#123;inline,[get_node/1]&#125;).</span><br><span class="line"></span><br><span class="line">%%%-----------------------------------------------------------------</span><br><span class="line">%%% This module implements the really generic stuff of the generic</span><br><span class="line">%%% standard behaviours (e.g. gen_server, gen_fsm).</span><br><span class="line">%%%</span><br><span class="line">%%% The standard behaviour should export init_it/6.</span><br><span class="line">%%%-----------------------------------------------------------------</span><br><span class="line">-export([start/5, start/6, debug_options/2, hibernate_after/1,</span><br><span class="line"> name/1, unregister_name/1, get_proc_name/1, get_parent/0,</span><br><span class="line"> call/3, call/4, reply/2, stop/1, stop/3]).</span><br><span class="line"></span><br><span class="line">-export([init_it/6, init_it/7]).</span><br><span class="line"></span><br><span class="line">-export([format_status_header/2]).</span><br><span class="line"></span><br><span class="line">-define(default_timeout, 5000).</span><br><span class="line"></span><br><span class="line">%%-----------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">-type linkage()    :: &#x27;link&#x27;  &#x27;nolink&#x27;.</span><br><span class="line">-type emgr_name()  :: &#123;&#x27;local&#x27;, atom()&#125;</span><br><span class="line">                     &#123;&#x27;global&#x27;, term()&#125;</span><br><span class="line">                     &#123;&#x27;via&#x27;, Module :: module(), Name :: term()&#125;.</span><br><span class="line"></span><br><span class="line">-type start_ret()  :: &#123;&#x27;ok&#x27;, pid()&#125;  &#x27;ignore&#x27;  &#123;&#x27;error&#x27;, term()&#125;.</span><br><span class="line"></span><br><span class="line">-type debug_flag() :: &#x27;trace&#x27;  &#x27;log&#x27;  &#x27;statistics&#x27;  &#x27;debug&#x27;</span><br><span class="line">                     &#123;&#x27;logfile&#x27;, string()&#125;.</span><br><span class="line">-type option()     :: &#123;&#x27;timeout&#x27;, timeout()&#125;</span><br><span class="line">     &#123;&#x27;debug&#x27;, [debug_flag()]&#125;</span><br><span class="line">     &#123;&#x27;spawn_opt&#x27;, [proc_lib:spawn_option()]&#125;.</span><br><span class="line">-type options()    :: [option()].</span><br><span class="line"></span><br><span class="line">%%-----------------------------------------------------------------</span><br><span class="line">%% Starts a generic process.</span><br><span class="line">%% start(GenMod, LinkP, Mod, Args, Options)</span><br><span class="line">%% start(GenMod, LinkP, Name, Mod, Args, Options)</span><br><span class="line">%%    GenMod = atom(), callback module implementing the &#x27;real&#x27; fsm</span><br><span class="line">%%    LinkP = link  nolink</span><br><span class="line">%%    Name = &#123;local, atom()&#125;  &#123;global, term()&#125;  &#123;via, atom(), term()&#125;</span><br><span class="line">%%    Args = term(), init arguments (to Mod:init/1)</span><br><span class="line">%%    Options = [&#123;timeout, Timeout&#125;  &#123;debug, [Flag]&#125;  &#123;spawn_opt, OptionList&#125;]</span><br><span class="line">%%      Flag = trace  log  &#123;logfile, File&#125;  statistics  debug</span><br><span class="line">%%          (debug == log &amp;&amp; statistics)</span><br><span class="line">%% Returns: &#123;ok, Pid&#125;  ignore &#123;error, Reason&#125; </span><br><span class="line">%%          &#123;error, &#123;already_started, Pid&#125;&#125; </span><br><span class="line">%%    The &#x27;already_started&#x27; is returned only if Name is given </span><br><span class="line">%%-----------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">-spec start(module(), linkage(), emgr_name(), module(), term(), options()) -&gt;</span><br><span class="line">start_ret().</span><br><span class="line"></span><br><span class="line">start(GenMod, LinkP, Name, Mod, Args, Options) -&gt;</span><br><span class="line">    case where(Name) of</span><br><span class="line">undefined -&gt;</span><br><span class="line">    do_spawn(GenMod, LinkP, Name, Mod, Args, Options);</span><br><span class="line">Pid -&gt;</span><br><span class="line">    &#123;error, &#123;already_started, Pid&#125;&#125;</span><br><span class="line">    end.</span><br><span class="line"></span><br><span class="line">-spec start(module(), linkage(), module(), term(), options()) -&gt; start_ret().</span><br><span class="line"></span><br><span class="line">start(GenMod, LinkP, Mod, Args, Options) -&gt;</span><br><span class="line">    do_spawn(GenMod, LinkP, Mod, Args, Options).</span><br><span class="line"></span><br><span class="line">%%-----------------------------------------------------------------</span><br><span class="line">%% Spawn the process (and link) maybe at another node.</span><br><span class="line">%% If spawn without link, set parent to ourselves &#x27;self&#x27;!!!</span><br><span class="line">%%-----------------------------------------------------------------</span><br><span class="line">do_spawn(GenMod, link, Mod, Args, Options) -&gt;</span><br><span class="line">    Time = timeout(Options),</span><br><span class="line">    proc_lib:start_link(?MODULE, init_it,</span><br><span class="line">[GenMod, self(), self(), Mod, Args, Options], </span><br><span class="line">Time,</span><br><span class="line">spawn_opts(Options));</span><br><span class="line">do_spawn(GenMod, _, Mod, Args, Options) -&gt;</span><br><span class="line">    Time = timeout(Options),</span><br><span class="line">    proc_lib:start(?MODULE, init_it,</span><br><span class="line">   [GenMod, self(), self, Mod, Args, Options], </span><br><span class="line">   Time,</span><br><span class="line">   spawn_opts(Options)).</span><br><span class="line"></span><br><span class="line">do_spawn(GenMod, link, Name, Mod, Args, Options) -&gt;</span><br><span class="line">    Time = timeout(Options),</span><br><span class="line">    proc_lib:start_link(?MODULE, init_it,</span><br><span class="line">[GenMod, self(), self(), Name, Mod, Args, Options],</span><br><span class="line">Time,</span><br><span class="line">spawn_opts(Options));</span><br><span class="line">do_spawn(GenMod, _, Name, Mod, Args, Options) -&gt;</span><br><span class="line">    Time = timeout(Options),</span><br><span class="line">    proc_lib:start(?MODULE, init_it,</span><br><span class="line">   [GenMod, self(), self, Name, Mod, Args, Options], </span><br><span class="line">   Time,</span><br><span class="line">   spawn_opts(Options)).</span><br><span class="line"></span><br><span class="line">%%-----------------------------------------------------------------</span><br><span class="line">%% Initiate the new process.</span><br><span class="line">%% Register the name using the Rfunc function</span><br><span class="line">%% Calls the Mod:init/Args function.</span><br><span class="line">%% Finally an acknowledge is sent to Parent and the main</span><br><span class="line">%% loop is entered.</span><br><span class="line">%%-----------------------------------------------------------------</span><br><span class="line">init_it(GenMod, Starter, Parent, Mod, Args, Options) -&gt;</span><br><span class="line">    init_it2(GenMod, Starter, Parent, self(), Mod, Args, Options).</span><br><span class="line"></span><br><span class="line">init_it(GenMod, Starter, Parent, Name, Mod, Args, Options) -&gt;</span><br><span class="line">    case register_name(Name) of</span><br><span class="line">true -&gt;</span><br><span class="line">    init_it2(GenMod, Starter, Parent, Name, Mod, Args, Options);</span><br><span class="line">&#123;false, Pid&#125; -&gt;</span><br><span class="line">    proc_lib:init_ack(Starter, &#123;error, &#123;already_started, Pid&#125;&#125;)</span><br><span class="line">    end.</span><br><span class="line"></span><br><span class="line">init_it2(GenMod, Starter, Parent, Name, Mod, Args, Options) -&gt;</span><br><span class="line">    GenMod:init_it(Starter, Parent, Name, Mod, Args, Options).</span><br><span class="line"></span><br><span class="line">%%-----------------------------------------------------------------</span><br><span class="line">%% Makes a synchronous call to a generic process.</span><br><span class="line">%% Request is sent to the Pid, and the response must be</span><br><span class="line">%% &#123;Tag, _, Reply&#125;.</span><br><span class="line">%%-----------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">%%% New call function which uses the new monitor BIF</span><br><span class="line">%%% call(ServerId, Label, Request)</span><br><span class="line"></span><br><span class="line">call(Process, Label, Request) -&gt; </span><br><span class="line">    call(Process, Label, Request, ?default_timeout).</span><br><span class="line"></span><br><span class="line">call(Process, Label, Request, Timeout)</span><br><span class="line">  when Timeout =:= infinity; is_integer(Timeout), Timeout &gt;= 0 -&gt;</span><br><span class="line">    Fun = fun(Pid) -&gt; do_call(Pid, Label, Request, Timeout) end,</span><br><span class="line">    do_for_proc(Process, Fun).</span><br><span class="line"></span><br><span class="line">do_call(Process, Label, Request, Timeout) -&gt;</span><br><span class="line">    try erlang:monitor(process, Process) of</span><br><span class="line">Mref -&gt;</span><br><span class="line">    %% If the monitor/2 call failed to set up a connection to a</span><br><span class="line">    %% remote node, we don&#x27;t want the &#x27;!&#x27; operator to attempt</span><br><span class="line">    %% to set up the connection again. (If the monitor/2 call</span><br><span class="line">    %% failed due to an expired timeout, &#x27;!&#x27; too would probably</span><br><span class="line">    %% have to wait for the timeout to expire.) Therefore,</span><br><span class="line">    %% use erlang:send/3 with the &#x27;noconnect&#x27; option so that it</span><br><span class="line">    %% will fail immediately if there is no connection to the</span><br><span class="line">    %% remote node.</span><br><span class="line"></span><br><span class="line">    catch erlang:send(Process, &#123;Label, &#123;self(), Mref&#125;, Request&#125;,</span><br><span class="line">  [noconnect]),</span><br><span class="line">    receive</span><br><span class="line">&#123;Mref, Reply&#125; -&gt;</span><br><span class="line">    erlang:demonitor(Mref, [flush]),</span><br><span class="line">    &#123;ok, Reply&#125;;</span><br><span class="line">&#123;&#x27;DOWN&#x27;, Mref, _, _, noconnection&#125; -&gt;</span><br><span class="line">    Node = get_node(Process),</span><br><span class="line">    exit(&#123;nodedown, Node&#125;);</span><br><span class="line">&#123;&#x27;DOWN&#x27;, Mref, _, _, Reason&#125; -&gt;</span><br><span class="line">    exit(Reason)</span><br><span class="line">    after Timeout -&gt;</span><br><span class="line">    erlang:demonitor(Mref, [flush]),</span><br><span class="line">    exit(timeout)</span><br><span class="line">    end</span><br><span class="line">    catch</span><br><span class="line">error:_ -&gt;</span><br><span class="line">    %% Node (C/Java?) is not supporting the monitor.</span><br><span class="line">    %% The other possible case -- this node is not distributed</span><br><span class="line">    %% -- should have been handled earlier.</span><br><span class="line">    %% Do the best possible with monitor_node/2.</span><br><span class="line">    %% This code may hang indefinitely if the Process </span><br><span class="line">    %% does not exist. It is only used for featureweak remote nodes.</span><br><span class="line">    Node = get_node(Process),</span><br><span class="line">    monitor_node(Node, true),</span><br><span class="line">    receive</span><br><span class="line">&#123;nodedown, Node&#125; -&gt; </span><br><span class="line">    monitor_node(Node, false),</span><br><span class="line">    exit(&#123;nodedown, Node&#125;)</span><br><span class="line">    after 0 -&gt; </span><br><span class="line">    Tag = make_ref(),</span><br><span class="line">    Process ! &#123;Label, &#123;self(), Tag&#125;, Request&#125;,</span><br><span class="line">    wait_resp(Node, Tag, Timeout)</span><br><span class="line">    end</span><br><span class="line">    end.</span><br><span class="line"></span><br><span class="line">get_node(Process) -&gt;</span><br><span class="line">    %% We trust the arguments to be correct, i.e</span><br><span class="line">    %% Process is either a local or remote pid,</span><br><span class="line">    %% or a &#123;Name, Node&#125; tuple (of atoms) and in this</span><br><span class="line">    %% case this node (node()) _is_ distributed and Node =/= node().</span><br><span class="line">    case Process of</span><br><span class="line">&#123;_S, N&#125; when is_atom(N) -&gt;</span><br><span class="line">    N;</span><br><span class="line">_ when is_pid(Process) -&gt;</span><br><span class="line">    node(Process)</span><br><span class="line">    end.</span><br><span class="line"></span><br><span class="line">wait_resp(Node, Tag, Timeout) -&gt;</span><br><span class="line">    receive</span><br><span class="line">&#123;Tag, Reply&#125; -&gt;</span><br><span class="line">    monitor_node(Node, false),</span><br><span class="line">    &#123;ok, Reply&#125;;</span><br><span class="line">&#123;nodedown, Node&#125; -&gt;</span><br><span class="line">    monitor_node(Node, false),</span><br><span class="line">    exit(&#123;nodedown, Node&#125;)</span><br><span class="line">    after Timeout -&gt;</span><br><span class="line">    monitor_node(Node, false),</span><br><span class="line">    exit(timeout)</span><br><span class="line">    end.</span><br><span class="line"></span><br><span class="line">%%</span><br><span class="line">%% Send a reply to the client.</span><br><span class="line">%%</span><br><span class="line">reply(&#123;To, Tag&#125;, Reply) -&gt;</span><br><span class="line">    Msg = &#123;Tag, Reply&#125;,</span><br><span class="line">    try To ! Msg catch _:_ -&gt; Msg end.</span><br><span class="line"></span><br><span class="line">%%-----------------------------------------------------------------</span><br><span class="line">%% Syncronously stop a generic process</span><br><span class="line">%%-----------------------------------------------------------------</span><br><span class="line">stop(Process) -&gt;</span><br><span class="line">    stop(Process, normal, infinity).</span><br><span class="line"></span><br><span class="line">stop(Process, Reason, Timeout)</span><br><span class="line">  when Timeout =:= infinity; is_integer(Timeout), Timeout &gt;= 0 -&gt;</span><br><span class="line">    Fun = fun(Pid) -&gt; proc_lib:stop(Pid, Reason, Timeout) end,</span><br><span class="line">    do_for_proc(Process, Fun).</span><br><span class="line"></span><br><span class="line">%%-----------------------------------------------------------------</span><br><span class="line">%% Map different specifications of a process to either Pid or</span><br><span class="line">%% &#123;Name,Node&#125;. Execute the given Fun with the process as only</span><br><span class="line">%% argument.</span><br><span class="line">%% -----------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">%% Local or remote by pid</span><br><span class="line">do_for_proc(Pid, Fun) when is_pid(Pid) -&gt;</span><br><span class="line">    Fun(Pid);</span><br><span class="line">%% Local by name</span><br><span class="line">do_for_proc(Name, Fun) when is_atom(Name) -&gt;</span><br><span class="line">    case whereis(Name) of</span><br><span class="line">Pid when is_pid(Pid) -&gt;</span><br><span class="line">    Fun(Pid);</span><br><span class="line">undefined -&gt;</span><br><span class="line">    exit(noproc)</span><br><span class="line">    end;</span><br><span class="line">%% Global by name</span><br><span class="line">do_for_proc(Process, Fun)</span><br><span class="line">  when ((tuple_size(Process) == 2 andalso element(1, Process) == global)</span><br><span class="line">orelse</span><br><span class="line">  (tuple_size(Process) == 3 andalso element(1, Process) == via)) -&gt;</span><br><span class="line">    case where(Process) of</span><br><span class="line">Pid when is_pid(Pid) -&gt;</span><br><span class="line">    Node = node(Pid),</span><br><span class="line">    try Fun(Pid)</span><br><span class="line">    catch</span><br><span class="line">exit:&#123;nodedown, Node&#125; -&gt;</span><br><span class="line">    %% A nodedown not yet detected by global,</span><br><span class="line">    %% pretend that it was.</span><br><span class="line">    exit(noproc)</span><br><span class="line">    end;</span><br><span class="line">undefined -&gt;</span><br><span class="line">    exit(noproc)</span><br><span class="line">    end;</span><br><span class="line">%% Local by name in disguise</span><br><span class="line">do_for_proc(&#123;Name, Node&#125;, Fun) when Node =:= node() -&gt;</span><br><span class="line">    do_for_proc(Name, Fun);</span><br><span class="line">%% Remote by name</span><br><span class="line">do_for_proc(&#123;_Name, Node&#125; = Process, Fun) when is_atom(Node) -&gt;</span><br><span class="line">    if</span><br><span class="line">node() =:= nonode@nohost -&gt;</span><br><span class="line">    exit(&#123;nodedown, Node&#125;);</span><br><span class="line">true -&gt;</span><br><span class="line">    Fun(Process)</span><br><span class="line">    end.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">%%%-----------------------------------------------------------------</span><br><span class="line">%%%  Misc. functions.</span><br><span class="line">%%%-----------------------------------------------------------------</span><br><span class="line">where(&#123;global, Name&#125;) -&gt; global:whereis_name(Name);</span><br><span class="line">where(&#123;via, Module, Name&#125;) -&gt; Module:whereis_name(Name);</span><br><span class="line">where(&#123;local, Name&#125;)  -&gt; whereis(Name).</span><br><span class="line"></span><br><span class="line">register_name(&#123;local, Name&#125; = LN) -&gt;</span><br><span class="line">    try register(Name, self()) of</span><br><span class="line">true -&gt; true</span><br><span class="line">    catch</span><br><span class="line">error:_ -&gt;</span><br><span class="line">    &#123;false, where(LN)&#125;</span><br><span class="line">    end;</span><br><span class="line">register_name(&#123;global, Name&#125; = GN) -&gt;</span><br><span class="line">    case global:register_name(Name, self()) of</span><br><span class="line">yes -&gt; true;</span><br><span class="line">no -&gt; &#123;false, where(GN)&#125;</span><br><span class="line">    end;</span><br><span class="line">register_name(&#123;via, Module, Name&#125; = GN) -&gt;</span><br><span class="line">    case Module:register_name(Name, self()) of</span><br><span class="line">yes -&gt;</span><br><span class="line">    true;</span><br><span class="line">no -&gt;</span><br><span class="line">    &#123;false, where(GN)&#125;</span><br><span class="line">    end.</span><br><span class="line"></span><br><span class="line">name(&#123;local,Name&#125;) -&gt; Name;</span><br><span class="line">name(&#123;global,Name&#125;) -&gt; Name;</span><br><span class="line">name(&#123;via,_, Name&#125;) -&gt; Name;</span><br><span class="line">name(Pid) when is_pid(Pid) -&gt; Pid.</span><br><span class="line"></span><br><span class="line">unregister_name(&#123;local,Name&#125;) -&gt;</span><br><span class="line">    try unregister(Name) of</span><br><span class="line">_ -&gt; ok</span><br><span class="line">    catch</span><br><span class="line">_:_ -&gt; ok</span><br><span class="line">    end;</span><br><span class="line">unregister_name(&#123;global,Name&#125;) -&gt;</span><br><span class="line">    _ = global:unregister_name(Name),</span><br><span class="line">    ok;</span><br><span class="line">unregister_name(&#123;via, Mod, Name&#125;) -&gt;</span><br><span class="line">    _ = Mod:unregister_name(Name),</span><br><span class="line">    ok;</span><br><span class="line">unregister_name(Pid) when is_pid(Pid) -&gt;</span><br><span class="line">    ok.</span><br><span class="line"></span><br><span class="line">get_proc_name(Pid) when is_pid(Pid) -&gt;</span><br><span class="line">    Pid;</span><br><span class="line">get_proc_name(&#123;local, Name&#125;) -&gt;</span><br><span class="line">    case process_info(self(), registered_name) of</span><br><span class="line">&#123;registered_name, Name&#125; -&gt;</span><br><span class="line">    Name;</span><br><span class="line">&#123;registered_name, _Name&#125; -&gt;</span><br><span class="line">    exit(process_not_registered);</span><br><span class="line">[] -&gt;</span><br><span class="line">    exit(process_not_registered)</span><br><span class="line">    end;</span><br><span class="line">get_proc_name(&#123;global, Name&#125;) -&gt;</span><br><span class="line">    case global:whereis_name(Name) of</span><br><span class="line">undefined -&gt;</span><br><span class="line">    exit(process_not_registered_globally);</span><br><span class="line">Pid when Pid =:= self() -&gt;</span><br><span class="line">    Name;</span><br><span class="line">_Pid -&gt;</span><br><span class="line">    exit(process_not_registered_globally)</span><br><span class="line">    end;</span><br><span class="line">get_proc_name(&#123;via, Mod, Name&#125;) -&gt;</span><br><span class="line">    case Mod:whereis_name(Name) of</span><br><span class="line">undefined -&gt;</span><br><span class="line">    exit(&#123;process_not_registered_via, Mod&#125;);</span><br><span class="line">Pid when Pid =:= self() -&gt;</span><br><span class="line">    Name;</span><br><span class="line">_Pid -&gt;</span><br><span class="line">    exit(&#123;process_not_registered_via, Mod&#125;)</span><br><span class="line">    end.</span><br><span class="line"></span><br><span class="line">get_parent() -&gt;</span><br><span class="line">    case get(&#x27;$ancestors&#x27;) of</span><br><span class="line">[Parent  _] when is_pid(Parent) -&gt;</span><br><span class="line">    Parent;</span><br><span class="line">[Parent  _] when is_atom(Parent) -&gt;</span><br><span class="line">    name_to_pid(Parent);</span><br><span class="line">_ -&gt;</span><br><span class="line">    exit(process_was_not_started_by_proc_lib)</span><br><span class="line">    end.</span><br><span class="line"></span><br><span class="line">name_to_pid(Name) -&gt;</span><br><span class="line">    case whereis(Name) of</span><br><span class="line">undefined -&gt;</span><br><span class="line">    case global:whereis_name(Name) of</span><br><span class="line">undefined -&gt;</span><br><span class="line">    exit(could_not_find_registered_name);</span><br><span class="line">Pid -&gt;</span><br><span class="line">    Pid</span><br><span class="line">    end;</span><br><span class="line">Pid -&gt;</span><br><span class="line">    Pid</span><br><span class="line">    end.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">timeout(Options) -&gt;</span><br><span class="line">    case lists:keyfind(timeout, 1, Options) of</span><br><span class="line">&#123;_,Time&#125; -&gt;</span><br><span class="line">    Time;</span><br><span class="line">false -&gt;</span><br><span class="line">    infinity</span><br><span class="line">    end.</span><br><span class="line"></span><br><span class="line">spawn_opts(Options) -&gt;</span><br><span class="line">    case lists:keyfind(spawn_opt, 1, Options) of</span><br><span class="line">&#123;_,Opts&#125; -&gt;</span><br><span class="line">    Opts;</span><br><span class="line">false -&gt;</span><br><span class="line">    []</span><br><span class="line">    end.</span><br><span class="line"></span><br><span class="line">hibernate_after(Options) -&gt;</span><br><span class="line">case lists:keyfind(hibernate_after, 1, Options) of</span><br><span class="line">&#123;_,HibernateAfterTimeout&#125; -&gt;</span><br><span class="line">HibernateAfterTimeout;</span><br><span class="line">false -&gt;</span><br><span class="line">infinity</span><br><span class="line">end.</span><br><span class="line"></span><br><span class="line">debug_options(Name, Opts) -&gt;</span><br><span class="line">    case lists:keyfind(debug, 1, Opts) of</span><br><span class="line">&#123;_,Options&#125; -&gt;</span><br><span class="line">    try sys:debug_options(Options)</span><br><span class="line">    catch _:_ -&gt;</span><br><span class="line">    error_logger:format(</span><br><span class="line">      &quot;~tp: ignoring erroneous debug options - ~tp~n&quot;,</span><br><span class="line">      [Name,Options]),</span><br><span class="line">    []</span><br><span class="line">    end;</span><br><span class="line">false -&gt;</span><br><span class="line">    []</span><br><span class="line">    end.</span><br><span class="line"></span><br><span class="line">format_status_header(TagLine, Pid) when is_pid(Pid) -&gt;</span><br><span class="line">    lists:concat([TagLine, &quot; &quot;, pid_to_list(Pid)]);</span><br><span class="line">format_status_header(TagLine, RegName) when is_atom(RegName) -&gt;</span><br><span class="line">    lists:concat([TagLine, &quot; &quot;, RegName]);</span><br><span class="line">format_status_header(TagLine, Name) -&gt;</span><br><span class="line">    &#123;TagLine, Name&#125;.</span><br></pre></td></tr></table></figure>
+
+<p><strong>proc_lib：</strong><code>do_spawn</code>生成被调用的进程的函数，它根据OTP设计原则负责同步&#x2F;异步过程启动。<code>proc_lib</code>是其中的<code>stdlib</code>一部分，尤其是当OTP的标准行为启动一个新流程时。<code>proc_lib</code> 当您开始进程时，会保存在生成​​时保存的一些有用信息：</p>
+<ul>
+<li>进程名称或进程标识符</li>
+<li>父进程信息</li>
+<li>父进程的其他以上进程的信息</li>
+</ul>
+<p><code>proc_lib</code>在已启动，<code>normal</code>，<code>shutdown会</code>完成额外的崩溃报告。崩溃报告是由SASL配置的应用程序。该报告包含启动时保存的信息，终止原因以及导致崩溃的过程的信息。</p>
+<p><img src="https://www.suyi1995.com/wp-content/uploads/2019/04/7_WPS%E5%9B%BE%E7%89%87-1.png"></p>
+<p><strong>monitor</strong></p>
+<ul>
+<li>monitor(Type, Item) -&gt; MonitorRef</li>
+<li><code>Type</code>指定要监视的内容，<code>process</code>仅指定当前情况。可能会在未来增加。</li>
+<li><code>Item</code>是<code>pid()</code>任一被指定的三个寄存器名或寄存器名称的远程节点。</li>
+</ul>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/2019/04/19/erlang-0419/" style="float: left;">
+        ← Erlang:gen_fsm与gen_statem
+    </a>
+    
+    
+    <a class="pull-right" href="/2019/04/10/erlang-0410/">
+        Erlang:Supervisor →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By sy. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="" style="color: #767D84">sy</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/sy-vendor" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
+</html>

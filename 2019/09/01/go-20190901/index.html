@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********  Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>Go学习笔记 | sy-vendor-blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="sy-vendor-blog">
+    <meta name="author" content="sy">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="sy-vendor-blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/C/" class="animsition-link">C<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/erlang/" class="animsition-link">erlang<small>(17)</small></a></li>
+				    
+				    <li><a href="/categories/go/" class="animsition-link">go<small>(20)</small></a></li>
+				    
+				    <li><a href="/categories/java/" class="animsition-link">java<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/other/" class="animsition-link">other<small>(12)</small></a></li>
+				    
+				</ul>
+        	</li>
+			
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">sy-vendor-blog</a></li>
+                            <li class="nolink"><span>Always </span>Fighting.</li>
+                            
+                            <li><a href="https://github.com/sy-vendor" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2019-09-01T10:42:07.000Z" itemprop="datePublished">
+          2019-09-01
+      </time>
+    
+</span>
+                <h1>Go学习笔记</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>给定一个循环数组（最后一个元素的下一个元素是数组的第一个元素），输出每个元素的下一个更大元素。数字 x 的下一个更大的元素是按数组遍历顺序，这个数字之后的第一个比它更大的数，这意味着你应该循环地搜索它的下一个更大的数。如果不存在，则输出 -1。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">func nextGreaterElements(nums []int) []int &#123;</span><br><span class="line">if len(nums) == 1 &#123;</span><br><span class="line">return []int&#123;-1&#125;</span><br><span class="line">&#125;</span><br><span class="line">    if len(nums) == 0 &#123;</span><br><span class="line">return []int&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">res := make([]int, len(nums))</span><br><span class="line"></span><br><span class="line">copy(res, nums)</span><br><span class="line">sort.Ints(res)</span><br><span class="line">max := res[len(nums)-1]</span><br><span class="line"></span><br><span class="line">for idx, num := range nums &#123;</span><br><span class="line">if num == max &#123;</span><br><span class="line">res[idx] = -1</span><br><span class="line">&#125;</span><br><span class="line">flag := true</span><br><span class="line">for _, m := range nums[idx+1:] &#123;</span><br><span class="line">if m &gt; num &#123;</span><br><span class="line">res[idx] = m</span><br><span class="line">flag = false</span><br><span class="line">break</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">if flag &#123;</span><br><span class="line">for _, m := range nums[:idx] &#123;</span><br><span class="line">if m &gt; num &#123;</span><br><span class="line">res[idx] = m</span><br><span class="line">break</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">return res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>给定一个单链表，把所有的奇数节点和偶数节点分别排在一起。请注意，这里的奇数节点和偶数节点指的是节点编号的奇偶性，而不是节点的值的奇偶性。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * type ListNode struct &#123;</span><br><span class="line"> *     Val int</span><br><span class="line"> *     Next *ListNode</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">func oddEvenList(head *ListNode) *ListNode &#123;</span><br><span class="line">if head == nil &#123;return head&#125;</span><br><span class="line">num1, num2 := make([]int, 0), make([]int, 0)</span><br><span class="line">n := 1</span><br><span class="line">for head != nil &#123;</span><br><span class="line">if n % 2 != 0 &#123;</span><br><span class="line">num1 = append(num1, head.Val)</span><br><span class="line">&#125; else &#123;</span><br><span class="line">num2 = append(num2, head.Val)</span><br><span class="line">&#125;</span><br><span class="line">n ++</span><br><span class="line">head = head.Next</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// fmt.Println(&quot;num1:&quot;, num1, &quot;, num2:&quot;, num2)</span><br><span class="line"></span><br><span class="line">num := append(num1, num2...)</span><br><span class="line">// fmt.Println(&quot;num:&quot;, num)</span><br><span class="line"></span><br><span class="line">head = &amp;ListNode&#123;&#125;</span><br><span class="line">res := head</span><br><span class="line">for _, v := range num &#123;</span><br><span class="line">res.Next = &amp;ListNode&#123;Val: v&#125;</span><br><span class="line">res = res.Next</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">return head.Next</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编写一个高效的算法来搜索 m x n 矩阵 matrix 中的一个目标值 target。该矩阵具有以下特性：</p>
+<ul>
+<li>每行的元素从左到右升序排列。</li>
+<li>每列的元素从上到下升序排列。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">func searchMatrix(matrix [][]int, target int) bool &#123;</span><br><span class="line">for i := 0; i &lt; len(matrix); i ++ &#123;</span><br><span class="line">for j := 0; j &lt; len(matrix[i]); j ++ &#123;</span><br><span class="line">if matrix[i][j] == target &#123;</span><br><span class="line">return true</span><br><span class="line">&#125;</span><br><span class="line">if matrix[i][j] &gt; target &#123;</span><br><span class="line">break</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">return false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在显示着数字的坏计算器上，我们可以执行以下两种操作：</p>
+<ul>
+<li><strong>双倍（Double）：</strong>将显示屏上的数字乘 2；</li>
+<li><strong>递减（Decrement）：</strong>将显示屏上的数字减 1 。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">func brokenCalc(X int, Y int) int &#123;</span><br><span class="line">cnt := 0</span><br><span class="line"></span><br><span class="line">if X &gt;= Y &#123;return X - Y&#125;</span><br><span class="line"></span><br><span class="line">for Y &gt; X &#123;</span><br><span class="line">if Y % 2 == 1 &#123;cnt++&#125;</span><br><span class="line">t := (Y + 1) / 2</span><br><span class="line">if t == X &#123;</span><br><span class="line">cnt++</span><br><span class="line">&#125; else if t &lt; X &#123;</span><br><span class="line">cnt += (X - t + 1)</span><br><span class="line">&#125; else &#123;</span><br><span class="line">Y = t</span><br><span class="line">cnt++</span><br><span class="line">continue</span><br><span class="line">&#125;</span><br><span class="line">break</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">return cnt</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>给你一个字符串 <code>s</code>，找出它的所有子串并按字典序排列，返回排在最后的那个子串。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">func lastSubstring(s string) string &#123;</span><br><span class="line">maxs := &quot;&quot;</span><br><span class="line">for i := 0; i &lt; len(s); i ++ &#123;</span><br><span class="line">if s[i:] &gt; maxs &#123;</span><br><span class="line">maxs = s[i:]</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">return maxs</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>给你链表的头结点 <code>head</code> ，请将其按 <strong>升序</strong> 排列并返回 <strong>排序后的链表</strong> 。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * type ListNode struct &#123;</span><br><span class="line"> *     Val int</span><br><span class="line"> *     Next *ListNode</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">func sortList(head *ListNode) *ListNode &#123;</span><br><span class="line">headL, res := make([]int, 0), &amp;ListNode&#123;&#125;</span><br><span class="line">for head != nil &#123;</span><br><span class="line">headL = append(headL, head.Val)</span><br><span class="line">head = head.Next</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sort.Ints(headL)</span><br><span class="line">cp := res</span><br><span class="line"></span><br><span class="line">for i := 0; i &lt; len(headL); i ++ &#123;</span><br><span class="line">t := &amp;ListNode&#123;Val: headL[i]&#125;</span><br><span class="line">cp.Next = t</span><br><span class="line">cp = cp.Next</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">return res.Next</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编写程序以 x 为基准分割链表，使得所有小于 x 的节点排在大于或等于 x 的节点之前。如果链表中包含 x，x 只需出现在小于 x 的元素之后(如下所示)。分割元素 x 只需处于“右半部分”即可，其不需要被置于左右两部分之间。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * type ListNode struct &#123;</span><br><span class="line"> *     Val int</span><br><span class="line"> *     Next *ListNode</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">func partition(head *ListNode, x int) *ListNode &#123;</span><br><span class="line">res := &amp;ListNode&#123;Val: 0, Next: nil&#125;</span><br><span class="line">nums1, nums2 := make([]int, 0), make([]int, 0)</span><br><span class="line">for &#123;</span><br><span class="line">if head != nil &#123;</span><br><span class="line">if head.Val &gt;= x &#123;</span><br><span class="line">nums2 = append([]int&#123;head.Val&#125;, nums2...)</span><br><span class="line">&#125; else &#123;</span><br><span class="line">nums1 = append([]int&#123;head.Val&#125;, nums1...)</span><br><span class="line">&#125;</span><br><span class="line">head = head.Next</span><br><span class="line">&#125; else &#123;</span><br><span class="line">break</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">result := res</span><br><span class="line"></span><br><span class="line">nums := append(nums1, nums2...)</span><br><span class="line">for i := 0; i &lt; len(nums); i++ &#123;</span><br><span class="line">result.Next = &amp;ListNode&#123;Val: nums[i]&#125;</span><br><span class="line">result = result.Next</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">return res.Next</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>给你一个整数数组 <code>arr</code> 和一个整数 <code>k</code> 。现需要从数组中恰好移除 <code>k</code> 个元素，请找出移除后数组中不同整数的最少数目。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">func findLeastNumOfUniqueInts(arr []int, k int) int &#123;</span><br><span class="line">// Map用来统计数字出现的频率</span><br><span class="line">// Arr为数字出现频率数组</span><br><span class="line">arrMap, arrNum := make(map[int]int), make([]int, 0)</span><br><span class="line">for i := 0; i &lt; len(arr); i ++ &#123;</span><br><span class="line">arrMap[arr[i]] ++</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">for _, num := range arrMap &#123;</span><br><span class="line">arrNum = append(arrNum, num)</span><br><span class="line">&#125;</span><br><span class="line">// 排序</span><br><span class="line">sort.Ints(arrNum)</span><br><span class="line"></span><br><span class="line">cnt := 0</span><br><span class="line">for i, v := range arrNum&#123;</span><br><span class="line">if k &gt; v &#123;// 若当前k大于该频率,则直接减</span><br><span class="line">k -= v</span><br><span class="line">&#125; else if k == v &#123;//若等于,则最少数目为接下来数组的长度</span><br><span class="line">cnt = len(arrNum) - i - 1</span><br><span class="line">break</span><br><span class="line">&#125; else &#123; //若小于,则最少数目为当前数之后数组的长度</span><br><span class="line">cnt = len(arrNum) - i</span><br><span class="line">break</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">return cnt</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/2019/10/10/erlang-191010/" style="float: left;">
+        ← Erlang:OTP
+    </a>
+    
+    
+    <a class="pull-right" href="/2019/08/16/erlang-0816/">
+        Erlang →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By sy. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="" style="color: #767D84">sy</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/sy-vendor" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
+</html>

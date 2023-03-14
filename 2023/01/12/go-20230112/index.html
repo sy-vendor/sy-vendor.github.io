@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********  Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>Go 的 DI 库 google/wire | sy-vendor-blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="sy-vendor-blog">
+    <meta name="author" content="sy">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="sy-vendor-blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/C/" class="animsition-link">C<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/erlang/" class="animsition-link">erlang<small>(17)</small></a></li>
+				    
+				    <li><a href="/categories/go/" class="animsition-link">go<small>(20)</small></a></li>
+				    
+				    <li><a href="/categories/java/" class="animsition-link">java<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/other/" class="animsition-link">other<small>(12)</small></a></li>
+				    
+				</ul>
+        	</li>
+			
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">sy-vendor-blog</a></li>
+                            <li class="nolink"><span>Always </span>Fighting.</li>
+                            
+                            <li><a href="https://github.com/sy-vendor" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2023-01-12T07:41:51.000Z" itemprop="datePublished">
+          2023-01-12
+      </time>
+    
+</span>
+                <h1>Go 的 DI 库 google/wire</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<h4 id="什么是DI"><a href="#什么是DI" class="headerlink" title="什么是DI"></a>什么是DI</h4><p><a target="_blank" rel="noopener" href="https://martinfowler.com/articles/injection.html">DI（Dependency Injection）</a>是一种设计模式，其中对象所依赖的对象不是自己准备的，而是从外部传递（从外部注入）。</p>
+<p>例：考虑一个结构体，它有一个方法，给定一个导演的名字，返回一个包含该导演所有电影的列表：  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">func (ml *MovieLister) MoviesDirectedBy(director string ) []Movie &#123;</span><br><span class="line">allMovies := ml.finder.FindAll()</span><br><span class="line">result := make ([]Movie, 0 , len (allMovies)) </span><br><span class="line">for _, m := range allMovies &#123;</span><br><span class="line">if director == m.Director &#123;</span><br><span class="line">result = append (result, m)</span><br><span class="line">&#125;</span><br><span class="line">&#125; </span><br><span class="line">return result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>该结构在名为 finder 的字段上具有 FindAll() 方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">type MovieLister struct &#123;</span><br><span class="line">finder MoviesFinder</span><br><span class="line">&#125; </span><br><span class="line">type MoviesFinder interface &#123;</span><br><span class="line">FindAll() []Movie</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此查找器将由 MovieLister 在正常控制流中初始化和设置。</p>
+<p>func NewMovieLister() *MovieLister {<br>   return &amp;MovieLister{<br>      finder: NewColonDelimitedMovieFinder( “movies.txt” ),<br>   }<br>}</p>
+<p>由此，MovieLister 与特定的 Finder 紧密结合。为了能够检索数据，无论它是在 RDB 中还是在外部 API 中，都需要在 MovieLister 外部初始化 Finder 并将其传递给 MovieLister。</p>
+<p>func NewMovieLister(finder MoviesFinder) *MovieLister {<br>   return &amp;MovieLister{<br>      finder: finder,<br>   }<br>}   </p>
+<p>func main() {<br>   finder :&#x3D; NewColonDelimitedMovieFinder( “movies.txt” )<br>   ml :&#x3D; NewMovieLister(finder)<br>   fmt.Println(ml.MoviesDirectedBy( “詹姆斯·卡梅隆” ）<br>}</p>
+<p>这样，使用 DI 模式的好处是让代码依赖关系更清晰，更灵活。</p>
+<h4 id="wire的使用方法"><a href="#wire的使用方法" class="headerlink" title="wire的使用方法"></a>wire的使用方法</h4><p>本地安装wire: go get github.com&#x2F;google&#x2F;wire&#x2F;cmd&#x2F;wire</p>
+<p>准备一个定义依赖项的文件:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//+ wireinject</span><br><span class="line"></span><br><span class="line">package main </span><br><span class="line"></span><br><span class="line">import &quot;github.com/google/wire&quot; </span><br><span class="line"></span><br><span class="line">func initMovieLister(fileName string ) *MovieLister &#123;</span><br><span class="line">wire.Build(</span><br><span class="line">NewMovieLister,</span><br><span class="line">NewColonDelimitedMovieFinder,</span><br><span class="line">)</span><br><span class="line">return nil</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>重要的<code>//+build wireinject</code>是第 1 行的构建标记。这将在正常构建期间将 wire.go 从构建中排除。</p>
+<p>此外，<code>wire.Build</code>在函数参数中枚举Provider。wire 检查这些函数的签名以解决依赖关系。</p>
+<p>这里使用的Provider如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func NewColonDelimitedMovieFinder(fileName string ) MoviesFinder</span><br><span class="line">func NewMovieLister(finder MoviesFinder) *MovieLister</span><br></pre></td></tr></table></figure>
+
+<p>wire 检查这些函数的签名并生成代码来解析所需的依赖关系。对于生成，请使用安装<code>go get</code>再.<code>wire</code></p>
+<p>&#x2F;&#x2F; Code generated by Wire. DO NOT EDIT.  </p>
+<p>&#x2F;&#x2F;go:generate wire<br>&#x2F;&#x2F;+build !wireinject  </p>
+<p>package main  </p>
+<p>&#x2F;&#x2F; Injectors from wire.go:  </p>
+<p>func initMovieLister(fileName string) *MovieLister {<br>   moviesFinder :&#x3D; NewColonDelimitedMovieFinder(fileName)<br>   movieLister :&#x3D; NewMovieLister(moviesFinder)<br>   return movieLister<br>}</p>
+<p>这样生成的<code>initMovieLister</code>在main等中可以正常调用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">ml := initMovieLister( &quot;movies.txt&quot; )</span><br><span class="line">fmt.Println(ml.MoviesDirectedBy( &quot;詹姆斯·卡梅隆&quot; ))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>请注意，<code>wire.Build()</code>的参数<strong>没有特定顺序</strong>。即使改变，生成的结果也不会改变，比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wire.Build( </span><br><span class="line">        NewColonDelimitedMovieFinder, </span><br><span class="line">        NewMovieLister, </span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+
+<h4 id="Provider错误处理"><a href="#Provider错误处理" class="headerlink" title="Provider错误处理"></a>Provider错误处理</h4><p>除了简单地返回值之外，Provider还可以返回错误和函数。例如，如果 NewColonDelimitedMovieFinder 返回错误，则为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func NewColonDelimitedMovieFinder(fileName string) (MoviesFinder, error)</span><br></pre></td></tr></table></figure>
+
+<p>相应的<code>initMovieLister</code>函数也应该返回一个错误</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">func initMovieLister(fileName string ) (*MovieLister, error ) &#123;</span><br><span class="line">wire.Build(</span><br><span class="line">NewMovieLister,</span><br><span class="line">NewColonDelimitedMovieFinder,</span><br><span class="line">) </span><br><span class="line">return nil , nil</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>错误处理也将在生成的代码中完成</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">func initMovieLister(fileName string ) (*MovieLister, error ) &#123;</span><br><span class="line">moviesFinder, err := NewColonDelimitedMovieFinder(fileName) </span><br><span class="line">if err != nil &#123;</span><br><span class="line">return nil , err</span><br><span class="line">&#125;</span><br><span class="line">movieLister := NewMovieLister(moviesFinder) </span><br><span class="line">return movieLister, nil</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="对应的Injector"><a href="#对应的Injector" class="headerlink" title="对应的Injector"></a>对应的Injector</h4><p>可以在 wire.go 中定义任何 Provider 函数。此处定义的提供程序将复制到 wire_gen.go使用。</p>
+<p>例如，转到标准<code>sql.Open()</code>函数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func Open(driverName, dataSourceName string ) (*DB, error )</span><br></pre></td></tr></table></figure>
+
+<p>由于它不能直接与 wire 一起使用，因此请在 Injector 中为 sql.Open 准备一个包装器。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">type DriverName string</span><br><span class="line">type DataSourceName string</span><br><span class="line"></span><br><span class="line">func provideDBConn(driver DriverName, dsn DataSourceName) (*sql.DB, error) &#123;</span><br><span class="line">return sql.Open(string(driver), string(dsn))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func initDBConn(driver DriverName, dsn DataSourceName) (*sql.DB, error) &#123;</span><br><span class="line">wire.Build(</span><br><span class="line">provideDBConn,</span><br><span class="line">)</span><br><span class="line">return nil, nil</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这定义了自己所需要的类型，使字符串可以按类型区分。如果您的数据库设置以类似 DBConfig 的结构组织，您可以将 DBConfig 作为参数传递给 provideDBConn 函数，并将字段传递给 sql.Open。</p>
+<h4 id="Provider-Set"><a href="#Provider-Set" class="headerlink" title="Provider Set"></a>Provider Set</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var movieListerSet = wire.NewSet(</span><br><span class="line">NewMovieLister,</span><br><span class="line">NewColonDelimitedMovieFinder,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wire.Build(</span><br><span class="line">movieListerSet,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>Set的使用是可选的，其实不使用 Set 也可以解决依赖关系。只是 Set 可用于避免冲突，例如当包名称冲突并需要别名时。</p>
+<h4 id="接口绑定"><a href="#接口绑定" class="headerlink" title="接口绑定"></a>接口绑定</h4><p>在其原始实现中，NewColonDelimitedMovieFinder 返回 MoviesFinder 接口的值，但返回具体类型 (*ColonDelimitedMovieFinder) 是可以的。 但是，在这种情况下，我们需要使用 wire.Bind() 将 *ColonDelimitedMovieFinder 绑定到 MoviesFinder 接口。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func NewColonDelimitedMovieFinder(fileName string)*ColonDelimitedMovieFinder &#123;&#125;</span><br><span class="line">func NewMovieLister(finder MoviesFinder) *MovieLister &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wire.Build(</span><br><span class="line">NewMovieLister,</span><br><span class="line">NewColonDelimitedMovieFinder,</span><br><span class="line">wire.Bind(new(MoviesFinder), new(*ColonDelimitedMovieFinder)),</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>这确保 *ColonDelimitedMovieFinder 被传递给请求 MoviesFinder 接口的Provider。</p>
+<p><strong>引用结构的字段</strong></p>
+<p>比如想将 Director.Name 传递给 NewMovie 的param</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">type Movie struct &#123;</span><br><span class="line">Director string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func NewMovie(director string) *Movie &#123;</span><br><span class="line">return &amp;Movie&#123;Director: director&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type Director struct &#123;</span><br><span class="line">Name string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func NewDirector(name string) *Director &#123;</span><br><span class="line">return &amp;Director&#123;Name: name&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这种情况下使用 wire.FieldsOf()</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">func initMovie() *Movie &#123;</span><br><span class="line">wire.Build(</span><br><span class="line">NewMovie,</span><br><span class="line">NewDirector,</span><br><span class="line">wire.FieldsOf(new(*Director), &quot;Name&quot;),</span><br><span class="line">)</span><br><span class="line">return nil</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>生成的代码 :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">func initMovie() *Movie &#123;</span><br><span class="line">    director := NewDirector()</span><br><span class="line">    string2 := director.Name</span><br><span class="line">    movie := NewMovie(string2)</span><br><span class="line">    return movie</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><p><strong>值和指针:</strong></p>
+<p>例如，如果一个 Provider 返回一个指针而另一个 Provider 取一个值，wire 将抛出类似“No provider found for ColonDelimitedMovieFinder”的错误。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func NewColonDelimitedMovieFinder(fileName string ) *ColonDelimitedMovieFinder</span><br><span class="line">func NewMovieLister(finder ColonDelimitedMovieFinder) *MovieLister</span><br></pre></td></tr></table></figure>
+
+<p>返回值或参数类型错误</p>
+<p>通常，<code>go run</code>有时只需要传递入 main.go，但在使用 wire 时还需要传递 wire_gen.go，然后运行 :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ go run main.go wire_gen.go</span><br></pre></td></tr></table></figure>
+
+<p>否则，wire_gen.go 中定义的 Injector 函数将是未定义的，将抛出错误。</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/2023/03/12/graphql-api-server/" style="float: left;">
+        ← GraphQL api服务器
+    </a>
+    
+    
+    <a class="pull-right" href="/2022/11/01/golang-20221101/">
+        Golang中的Goroutine，Channel与WaitGroup →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By sy. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="" style="color: #767D84">sy</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/sy-vendor" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********  Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>Go:排序 | sy-vendor-blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="sy-vendor-blog">
+    <meta name="author" content="sy">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="sy-vendor-blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/C/" class="animsition-link">C<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/erlang/" class="animsition-link">erlang<small>(17)</small></a></li>
+				    
+				    <li><a href="/categories/go/" class="animsition-link">go<small>(20)</small></a></li>
+				    
+				    <li><a href="/categories/java/" class="animsition-link">java<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/other/" class="animsition-link">other<small>(12)</small></a></li>
+				    
+				</ul>
+        	</li>
+			
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">sy-vendor-blog</a></li>
+                            <li class="nolink"><span>Always </span>Fighting.</li>
+                            
+                            <li><a href="https://github.com/sy-vendor" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2019-12-08T07:38:39.000Z" itemprop="datePublished">
+          2019-12-08
+      </time>
+    
+</span>
+                <h1>Go:排序</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<h4 id="1、选择排序"><a href="#1、选择排序" class="headerlink" title="1、选择排序"></a>1、选择排序</h4><p>在未排序序列中找到最小元素,存放到排序序列的起始位置,然后,再从剩余未排序元素中继续寻找最小元素,然后放到已排序序列的末尾,直到所有元素均排序完毕</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">func SelectSort(arr []int) &#123;</span><br><span class="line">for i := 0; i &lt; len(arr) -1; i++ &#123;</span><br><span class="line">min := i</span><br><span class="line">for j := i+1; j &lt; len(arr); j++ &#123;</span><br><span class="line">if arr[j] &lt; arr[min] &#123;</span><br><span class="line">min = j</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">arr[min], arr[i] = arr[i], arr[min]</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、冒泡排序"><a href="#2、冒泡排序" class="headerlink" title="2、冒泡排序"></a>2、冒泡排序</h4><p>一次比较两个元素，如果它们的顺序错误就把它们交换过来。重复地进行比较直到没有再需要交换</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">func BubbleSort(arr []int) &#123;</span><br><span class="line">swapped := true</span><br><span class="line">for swapped &#123;</span><br><span class="line">swapped = false</span><br><span class="line">for i := 0; i &lt; len(arr) -1; i++ &#123;</span><br><span class="line">if arr[i] &gt; arr[i+1] &#123;</span><br><span class="line">arr[i], arr[i+1] = arr[i+1], arr[i]</span><br><span class="line">swapped = true</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3、插入排序"><a href="#3、插入排序" class="headerlink" title="3、插入排序"></a>3、插入排序</h4><p>通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">func InsertSort(arr []int) &#123;</span><br><span class="line">for i := 0; i &lt; len(arr); i++ &#123;</span><br><span class="line">selected := arr[i]</span><br><span class="line">for j := i-1; j &gt;= 0; j-- &#123;</span><br><span class="line">if arr[j] &gt; selected &#123;</span><br><span class="line">arr[j], arr[j+1] = arr[j+1], arr[j]</span><br><span class="line">&#125; else &#123;</span><br><span class="line">arr[j+1] = selected</span><br><span class="line">break</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4、归并排序"><a href="#4、归并排序" class="headerlink" title="4、归并排序"></a>4、归并排序</h4><p>把长度为n的输入序列分成两个长度为n&#x2F;2的子序列，然后分别对这两个子序列分别采用归并排序，最后将两个排序好的子序列合并成一个最终的排序序列</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">func MergeSort(arr []int) []int&#123;</span><br><span class="line">if len(arr) &lt;= 1 &#123;</span><br><span class="line">return arr</span><br><span class="line">&#125;</span><br><span class="line">var middle int = len(arr)/2</span><br><span class="line">left := MergeSort(arr[:middle])</span><br><span class="line">right := MergeSort(arr[middle:])</span><br><span class="line">return merge(left, right)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func merge(a, b []int) []int &#123;</span><br><span class="line">alen, blen := len(a), len(b)</span><br><span class="line">var z []int = make([]int, alen + blen)</span><br><span class="line">k := 0</span><br><span class="line">i, j := 0, 0</span><br><span class="line">for i &lt; alen &amp;&amp; j &lt; blen  &#123;</span><br><span class="line">if a[i] &lt; b[j] &#123;</span><br><span class="line">z[k] = a[i]</span><br><span class="line">i++</span><br><span class="line">&#125; else &#123;</span><br><span class="line">z[k] = b[j]</span><br><span class="line">j++</span><br><span class="line">&#125;</span><br><span class="line">k++</span><br><span class="line">&#125;</span><br><span class="line">for i != alen &#123;</span><br><span class="line">z[k] = a[i]</span><br><span class="line">k++</span><br><span class="line">i++</span><br><span class="line">&#125;</span><br><span class="line">for j != blen &#123;</span><br><span class="line">z[k] = b[j]</span><br><span class="line">k++</span><br><span class="line">j++</span><br><span class="line">&#125;</span><br><span class="line">return z</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5、快速排序"><a href="#5、快速排序" class="headerlink" title="5、快速排序"></a>5、快速排序</h4><p>从数列中挑出一个元素，称为 “基准”；然后，重新排序数列，所有元素比基准值小的摆放在基准前面，所有元素比基准值大的摆在基准的后面。在这个分区退出之后，该基准就处于数列的中间位置，递归地把小于基准值元素的子数列和大于基准值元素的子数列排序</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">func QuickSort(arr []int) &#123;</span><br><span class="line">sort(arr, 0, len(arr)-1)</span><br><span class="line">&#125;</span><br><span class="line">func sort(arr []int, left int, right int) &#123;</span><br><span class="line">if right &lt;= left &#123;</span><br><span class="line">return</span><br><span class="line">&#125;</span><br><span class="line">p := partition(arr, left, right) //快速排序切分</span><br><span class="line">sort(arr, left, p-1)</span><br><span class="line">sort(arr, p+1, right)</span><br><span class="line">&#125;</span><br><span class="line">func partition(arr []int, left int, right int) int &#123;</span><br><span class="line">pivot := arr[left]</span><br><span class="line">i, j := left, right+1</span><br><span class="line">for true &#123;</span><br><span class="line">for i++; arr[i] &lt; pivot; i++ &#123;</span><br><span class="line">if i == right &#123;</span><br><span class="line">break</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">for j--; pivot &lt; arr[j]; j-- &#123;</span><br><span class="line">if j == left &#123;</span><br><span class="line">break</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">if i &gt;= j &#123;</span><br><span class="line">break</span><br><span class="line">&#125;</span><br><span class="line">arr[i], arr[j] = arr[j], arr[i]</span><br><span class="line">&#125;</span><br><span class="line">arr[left], arr[j] = arr[j], arr[left]</span><br><span class="line">return j</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="6、希尔排序"><a href="#6、希尔排序" class="headerlink" title="6、希尔排序"></a>6、希尔排序</h4><p>选择一个增量序列t1，t2，…，tk，其中ti&gt;tj，tk&#x3D;1；按增量序列个数k，对序列进行k 趟排序；每趟排序，根据对应的增量ti，将待排序列分割成若干长度为m 的子序列，分别对各子表进行直接插入排序。仅增量因子为1 时，整个序列作为一个表来处理，表长度即为整个序列的长度</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">func ShellSort(arr []int) &#123;</span><br><span class="line">var gap int = len(arr) / 2</span><br><span class="line">for gap &gt; 0 &#123;</span><br><span class="line">for i := gap; i &lt; len(arr); i++ &#123;</span><br><span class="line">temp := arr[i]</span><br><span class="line">j := i</span><br><span class="line">for j &gt;= gap &amp;&amp; arr[j-gap] &gt; temp &#123;</span><br><span class="line">arr[j] = arr[j-gap]</span><br><span class="line">j = j - gap</span><br><span class="line">&#125;</span><br><span class="line">arr[j] = temp</span><br><span class="line">&#125;</span><br><span class="line">gap = gap / 2</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="7、堆排序"><a href="#7、堆排序" class="headerlink" title="7、堆排序"></a>7、堆排序</h4><p>将初始待排序关键字序列(R1,R2….Rn)构建成大顶堆，此堆为初始的无序区；将堆顶元素R[1]与最后一个元素R[n]交换，此时得到新的无序区(R1,R2,……Rn-1)和新的有序区(Rn),且满足R[1,2…n-1]&lt;&#x3D;R[n]；由于交换后新的堆顶R[1]可能违反堆的性质，因此需要对当前无序区(R1,R2,……Rn-1)调整为新堆，然后再次将R[1]与无序区最后一个元素交换，得到新的无序区(R1,R2….Rn-2)和新的有序区(Rn-1,Rn)。不断重复此过程直到有序区的元素个数为n-1，则整个排序过程完成</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">func HeapSort(arr []int) &#123;</span><br><span class="line">var first int = len(arr) / 2                </span><br><span class="line">for start := first; start &gt; -1; start-- &#123;</span><br><span class="line">maxheapify(arr, start, len(arr)-1)</span><br><span class="line">&#125;</span><br><span class="line">for end := len(arr) - 1; end &gt; 0; end-- &#123; </span><br><span class="line">arr[end], arr[0] = arr[0], arr[end]</span><br><span class="line">maxheapify(arr, 0, end-1)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">func maxheapify(arr []int, start int, end int) &#123;</span><br><span class="line">root := start</span><br><span class="line">for true &#123;</span><br><span class="line">child := root*2 + 1</span><br><span class="line">if child &gt; end &#123;</span><br><span class="line">break</span><br><span class="line">&#125;</span><br><span class="line">if child+1 &lt;= end &amp;&amp; arr[child] &lt; arr[child+1] &#123;</span><br><span class="line">child = child + 1</span><br><span class="line">&#125;</span><br><span class="line">if arr[root] &lt; arr[child] &#123;</span><br><span class="line">arr[root], arr[child] = arr[child], arr[root]</span><br><span class="line">root = child</span><br><span class="line">&#125; else &#123;</span><br><span class="line">break</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/2019/12/30/other-1230/" style="float: left;">
+        ← 高并发系统设计
+    </a>
+    
+    
+    <a class="pull-right" href="/2019/11/12/erlang-20191112/">
+        Erlang:aes_cbc128加密 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By sy. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="" style="color: #767D84">sy</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/sy-vendor" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
+</html>

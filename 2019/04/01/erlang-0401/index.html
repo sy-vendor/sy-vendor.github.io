@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********  Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>Erlang:详解字符串连接 | sy-vendor-blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="sy-vendor-blog">
+    <meta name="author" content="sy">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="sy-vendor-blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/C/" class="animsition-link">C<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/erlang/" class="animsition-link">erlang<small>(17)</small></a></li>
+				    
+				    <li><a href="/categories/go/" class="animsition-link">go<small>(20)</small></a></li>
+				    
+				    <li><a href="/categories/java/" class="animsition-link">java<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/other/" class="animsition-link">other<small>(12)</small></a></li>
+				    
+				</ul>
+        	</li>
+			
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">sy-vendor-blog</a></li>
+                            <li class="nolink"><span>Always </span>Fighting.</li>
+                            
+                            <li><a href="https://github.com/sy-vendor" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2019-04-01T11:43:31.000Z" itemprop="datePublished">
+          2019-04-01
+      </time>
+    
+</span>
+                <h1>Erlang:详解字符串连接</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>在erlang中，字符串是整数列表。因为它们是整数，所以它们可以存储任何unicode字符。</p>
+<p>当想要连接2个字符串时，可以使用 如下<code>string:concat/2</code>实现：<br> <code>lib/stdlib/src/string.erl</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">%% concat(String1, String2)</span><br><span class="line">%%  Concatenate 2 strings.</span><br><span class="line"></span><br><span class="line">-spec concat(String1, String2) -&gt; String3 when</span><br><span class="line">      String1 :: string(),</span><br><span class="line">      String2 :: string(),</span><br><span class="line">      String3 :: string().</span><br><span class="line"></span><br><span class="line">concat(S1, S2) -&gt; S1 ++ S2.</span><br></pre></td></tr></table></figure>
+
+<p>另一种<code>++</code>操作是一个BIF，在C中实现的内置函数 <code>erts/emulator/beam/erl_bif_lists.c</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * erlang:&#x27;++&#x27;/2</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">Eterm</span><br><span class="line">ebif_plusplus_2(BIF_ALIST_2)</span><br><span class="line">&#123;</span><br><span class="line">    return append(BIF_P, BIF_ARG_1, BIF_ARG_2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static BIF_RETTYPE append(Process* p, Eterm A, Eterm B)</span><br><span class="line">&#123;</span><br><span class="line">    Eterm list;</span><br><span class="line">    Eterm copy;</span><br><span class="line">    Eterm last;</span><br><span class="line">    size_t need;</span><br><span class="line">    Eterm* hp;</span><br><span class="line">    int i;</span><br><span class="line"></span><br><span class="line">    if ((i = list_length(A)) &lt; 0) &#123;</span><br><span class="line">        BIF_ERROR(p, BADARG);</span><br><span class="line">    &#125;</span><br><span class="line">    if (i == 0) &#123;</span><br><span class="line">        BIF_RET(B);</span><br><span class="line">    &#125; else if (is_nil(B)) &#123;</span><br><span class="line">        BIF_RET(A);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    need = 2*i;</span><br><span class="line">    hp = HAlloc(p, need);</span><br><span class="line">    list = A;</span><br><span class="line">    copy = last = CONS(hp, CAR(list_val(list)), make_list(hp+2));</span><br><span class="line">    list = CDR(list_val(list));</span><br><span class="line">    hp += 2;</span><br><span class="line">    i--;</span><br><span class="line">    while(i--) &#123;</span><br><span class="line">        Eterm* listp = list_val(list);</span><br><span class="line">        last = CONS(hp, CAR(listp), make_list(hp+2));</span><br><span class="line">        list = CDR(listp);</span><br><span class="line">        hp += 2;</span><br><span class="line">    &#125;</span><br><span class="line">    CDR(list_val(last)) = B;</span><br><span class="line">    BIF_RET(copy);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>首先，<code>A</code>计算长度。此操作是<code>O(n)</code>这里<code>n</code>是列表的长度(<br><code>erts/emulator/beam/utils.c</code>)。如果任一列表为空，则返回另一个列表。</p>
+<p>在进程堆上为新列表分配空间。每个列表项的大小为2 <code>Eterm</code>：列表本身为1，元素为1。最后只是复制<code>A</code>到新分配的列表并在其尾部添加B。</p>
+<p><code>对于last = CONS(hp, CAR(list_val(list)), make_list(hp+2))，</code> 定义在： <code>erts/emulator/beam/erl_term.h。</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#define CONS（hp，car，cdr）\ </span><br><span class="line">        （CAR（hp）=（car），CDR（hp）=（cdr），make_list（hp））</span><br><span class="line"></span><br><span class="line">#define CAR（x）（（x）[0]）# </span><br><span class="line">define CDR（x）（（x）[1]）</span><br></pre></td></tr></table></figure>
+
+<p><code>make_list</code>用于<code>Eterm</code>从进程堆上的指针返回标记为列表的列表。<code>list_val</code> 相反并返回列表堆上的地址。<code>CONS</code>将2个元素放入<code>hp[0]</code> （列表中的元素）和<code>hp[1]</code>（下一个列表项）并返回列表<code>hp</code>作为<code>Eterm。</code>这个复杂的表达现在可以解读为：</p>
+<ul>
+<li>复制到<code>hp[0]</code>要复制的列表的元素中</li>
+<li>由于新列表被分配为堆栈中的一个块，因此<code>Eterm</code> 在stack（<code>hp+2</code>）上将下一个列表项设置为以下内容</li>
+</ul>
+<p>列表<code>A</code>完全复制后，最后一个元素设置为<code>B即</code> <code>CDR(list_val(last)) = B。</code></p>
+<h4 id="内存分配"><a href="#内存分配" class="headerlink" title="内存分配"></a>内存分配</h4><p>一个通常字符有4个字节的大小。 <code>erts/emulator/beam/sys.hEterm。</code> 小整数可以直接存储在这4个字节中。有26位可用于存储一个小整数，因此可以存储多达2²⁵&#x3D; 33554432。我们可以认为unicode字符可以直接存储在列表中。 如果一个字符串有<code>n</code>字符，它将使用 <code>2 * n</code>单词。<code>binary</code>相反的A 将使用3到6个字（取决于数据大小）加上数据本身的大小。存储为列表的字符串大约占存储为a的空间的8倍<code>binary</code>。</p>
+<p>对于其他的， 不会复制指向的值，只会复制列表项。 将<code>n</code>元组记录列表附加到元组列表<code>m</code>将花费相同的时间&#x2F;内存，如将长度字符串连接<code>n</code>到一个长度字符串 <code>m</code>。 唯一的区别是元组没有封装 <code>Eterm</code>。该列表仅包含 <code>Eterm</code>一个_指向_元组的_指针_：它存储在堆中的位置。</p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>对于有！发生消息时，应该使用 <code>binary</code>和<code>IoList</code>尽可能。<code>IoList为iolist = [char() binary() iolist()]</code>。</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/2019/04/10/erlang-0410/" style="float: left;">
+        ← Erlang:Supervisor
+    </a>
+    
+    
+    <a class="pull-right" href="/2019/03/24/other-0324/">
+        学习总结 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By sy. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="" style="color: #767D84">sy</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/sy-vendor" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
+</html>

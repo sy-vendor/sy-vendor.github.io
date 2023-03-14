@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********  Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>Erlang:aes_cbc128加密 | sy-vendor-blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="sy-vendor-blog">
+    <meta name="author" content="sy">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="sy-vendor-blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/C/" class="animsition-link">C<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/erlang/" class="animsition-link">erlang<small>(17)</small></a></li>
+				    
+				    <li><a href="/categories/go/" class="animsition-link">go<small>(20)</small></a></li>
+				    
+				    <li><a href="/categories/java/" class="animsition-link">java<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/other/" class="animsition-link">other<small>(12)</small></a></li>
+				    
+				</ul>
+        	</li>
+			
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">sy-vendor-blog</a></li>
+                            <li class="nolink"><span>Always </span>Fighting.</li>
+                            
+                            <li><a href="https://github.com/sy-vendor" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2019-11-12T07:34:19.000Z" itemprop="datePublished">
+          2019-11-12
+      </time>
+    
+</span>
+                <h1>Erlang:aes_cbc128加密</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">-define(AES_BLOCK_SIZE, 16).</span><br><span class="line">-define(AES_TYPE, aes_cbc128).</span><br><span class="line">-define(AES_VEC, &lt;&lt;16#00, 16#01, 16#02, 16#03, 16#04, 16#05, 16#06, 16#07, 16#08, 16#09, 16#0A, 16#0B, 16#0C, 16#0D, 16#0E, 16#0F&gt;&gt;).</span><br><span class="line"></span><br><span class="line">%% @doc</span><br><span class="line">test() -&gt;</span><br><span class="line">  &#123;ok, Socket&#125; = gen_udp:open(10000, [binary]),</span><br><span class="line">  EncryptType = 0,</span><br><span class="line">  GameId = 10001,</span><br><span class="line">  GameKey = &#x27;233311dsdaadadssx&#x27;,</span><br><span class="line">  OnlineMax = 5000,</span><br><span class="line">  Online = 1000,</span><br><span class="line">  PlatformId = 1,</span><br><span class="line">  TxServerId = 1,</span><br><span class="line">  EncryptKeyC = &quot;adsdcsadadssssqsdcccsssxxzzzcsdqqqeqeqsssssssssssssxe&quot;,</span><br><span class="line">  EncryptKey = list_to_binary(lists:sublist(EncryptKeyC, 16)),</span><br><span class="line">  JsonData = switch_json_data(EncryptType, GameId, GameKey, OnlineMax, Online, PlatformId, TxServerId, EncryptKey),</span><br><span class="line">  ok = gen_udp:send(Socket, &quot;127.0.0.1&quot;, 10002, JsonData),</span><br><span class="line"> %%%=================================================================== DEBUG部分</span><br><span class="line">  %%  Value = receive</span><br><span class="line">  %%            &#123;udp, _Socket, _, _, Bin&#125; -&gt;</span><br><span class="line">  %%              BinList = binary_to_list(Bin),</span><br><span class="line">  %%              BinListN = lists:sublist(BinList, 1, length(BinList) - 1),</span><br><span class="line">  %%              &#123;struct, Param&#125; = gs_json:decode(list_to_binary(BinListN)),</span><br><span class="line">  %%              &#123;_, AsyncId&#125; = lists:keyfind(&lt;&lt;&quot;asyncid&quot;&gt;&gt;, 1, Param),</span><br><span class="line">  %%              &#123;_, ResultCode&#125; = lists:keyfind(&lt;&lt;&quot;result_code&quot;&gt;&gt;, 1, Param),</span><br><span class="line">  %%              &#123;_, Desc&#125; = lists:keyfind(&lt;&lt;&quot;desc&quot;&gt;&gt;, 1, Param),</span><br><span class="line">  %%              ?DEBUG(&quot;==============&gt;AsyncId:~w, ResultCode:~w, Desc:~s~n&quot;, [AsyncId, ResultCode, Desc]),</span><br><span class="line">  %%              ok</span><br><span class="line">  %%          after 2000 -&gt;</span><br><span class="line">  %%      error</span><br><span class="line">  %%          end,</span><br><span class="line">  %%  ?DEBUG(&quot;==============&gt;Value:~w~n&quot;, [Value]),</span><br><span class="line"> %%%===================================================================</span><br><span class="line">  ok.</span><br><span class="line"></span><br><span class="line">%% @doc</span><br><span class="line">request_header_data(EncryptType, GameId) -&gt;</span><br><span class="line">  &#123;</span><br><span class="line">    &#x27;asyncid&#x27;, 1572537600,</span><br><span class="line">    &#x27;client_time&#x27;, Now1572537600</span><br><span class="line">    &#x27;encrypt_type&#x27;, EncryptType,</span><br><span class="line">    &#x27;gameid&#x27;, GameId</span><br><span class="line">  &#125;.</span><br><span class="line"></span><br><span class="line">%% @doc</span><br><span class="line">request_body_data(GameKey, OnlineMax, Online, PlatformId, TxServerId) -&gt;</span><br><span class="line">  Now = gs_time:timestamp(),</span><br><span class="line">  &#123;</span><br><span class="line">    &#x27;client_time&#x27;, Now,</span><br><span class="line">    &#x27;gamekey&#x27;, GameKey,</span><br><span class="line">    &#x27;msg_type&#x27;, &#x27;dir_status_report&#x27;,</span><br><span class="line">    &#x27;userdata&#x27;, &#123;</span><br><span class="line">    &#x27;capacity&#x27;, OnlineMax,</span><br><span class="line">    &#x27;online&#x27;, Online,</span><br><span class="line">    &#x27;platform_id&#x27;, PlatformId,</span><br><span class="line">    &#x27;server_id&#x27;, TxServerId</span><br><span class="line">  &#125;</span><br><span class="line">  &#125;.</span><br><span class="line"></span><br><span class="line">%% @doc</span><br><span class="line">switch_json_data(EncryptType, GameId, GameKey, OnlineMax, Online, PlatformId, TxServerId, _EncryptKey) when EncryptType == 0 -&gt;</span><br><span class="line">  Header = gs_json:to_json(request_header_data(EncryptType, GameId)),</span><br><span class="line">  Body = gs_json:to_json(request_body_data(GameKey, OnlineMax, Online, PlatformId, TxServerId)),</span><br><span class="line">  &lt;&lt;Header/binary, Body/binary&gt;&gt;;</span><br><span class="line">switch_json_data(EncryptType, GameId, GameKey, OnlineMax, Online, PlatformId, TxServerId, EncryptKey) -&gt;</span><br><span class="line">  Header = gs_json:to_json(request_header_data(EncryptType, GameId)),</span><br><span class="line">  Body = gs_json:to_json(request_body_data(GameKey, OnlineMax, Online, PlatformId, TxServerId)),</span><br><span class="line">  AesData = encrypt_aes(Body, EncryptKey),</span><br><span class="line">  &lt;&lt;Header/binary, AesData/binary&gt;&gt;.</span><br><span class="line"></span><br><span class="line">%% @doc</span><br><span class="line">encrypt_aes(Plain, Key) -&gt;</span><br><span class="line">  crypto:block_encrypt(?AES_TYPE, Key, ?AES_VEC, pkcs5_padding(Plain)).</span><br><span class="line"></span><br><span class="line">%% @doc</span><br><span class="line">pkcs5_padding(PlainText) when is_binary(PlainText) -&gt;</span><br><span class="line">  Rem = size(PlainText) rem ?AES_BLOCK_SIZE,</span><br><span class="line">  Padding = lists:duplicate(?AES_BLOCK_SIZE - Rem, 0),</span><br><span class="line">  Binary = list_to_binary(Padding),</span><br><span class="line">  &lt;&lt;PlainText/binary, Binary/binary&gt;&gt;;</span><br><span class="line">pkcs5_padding(PlainText) when is_list(PlainText) -&gt;</span><br><span class="line">  Rem = length(PlainText) rem ?AES_BLOCK_SIZE,</span><br><span class="line">  Padding = lists:duplicate(?AES_BLOCK_SIZE - Rem, 0),</span><br><span class="line">  PlainText ++ Padding.</span><br></pre></td></tr></table></figure>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/2019/12/08/go-1208/" style="float: left;">
+        ← Go:排序
+    </a>
+    
+    
+    <a class="pull-right" href="/2019/10/24/go-1024/">
+        Go:构建Web Server →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By sy. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="" style="color: #767D84">sy</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/sy-vendor" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
+</html>

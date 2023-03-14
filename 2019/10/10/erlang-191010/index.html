@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********  Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>Erlang:OTP | sy-vendor-blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="sy-vendor-blog">
+    <meta name="author" content="sy">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="sy-vendor-blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/C/" class="animsition-link">C<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/erlang/" class="animsition-link">erlang<small>(17)</small></a></li>
+				    
+				    <li><a href="/categories/go/" class="animsition-link">go<small>(20)</small></a></li>
+				    
+				    <li><a href="/categories/java/" class="animsition-link">java<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/other/" class="animsition-link">other<small>(12)</small></a></li>
+				    
+				</ul>
+        	</li>
+			
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">sy-vendor-blog</a></li>
+                            <li class="nolink"><span>Always </span>Fighting.</li>
+                            
+                            <li><a href="https://github.com/sy-vendor" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2019-10-10T09:20:24.000Z" itemprop="datePublished">
+          2019-10-10
+      </time>
+    
+</span>
+                <h1>Erlang:OTP</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>Erlang &#x2F; OTP与大多数编程环境不同，即使是那些也使用虚拟机的环境也是如此。Erlang对应用程序的结构，应具有的隔离级别以及Erlang的VM可以执行的操作与软件可以执行的操作之间的隔离性。不仅是一种编程语言，还构建系统的整个框架。它确保所有应用程序都能很好地契合在一起，可以实时完成更新，并且代码易于检测和观察。</p>
+<h4 id="Run-Time-System"><a href="#Run-Time-System" class="headerlink" title="Run-Time System"></a>Run-Time System</h4><p>一切的基础都是Erlang虚拟机本身，称为BEAM。从技术上讲，BEAM是Erlang虚拟机的单个实现，可能还有其他实现。例如，Erllvm是基于LLVM的实现（使用一些自定义补丁使一切变为可能），而90年代的较早实现称为JAM。Erlang VM是用C实现的，包含许多花哨的东西：用于运行进程的调度程序，垃圾回收，内存分配器，用于事件的计时器轮，用于对操作系统功能进行抽象并提供统一接口（例如时间管理，文件处理驱动程序等），一些内置函数的运行速度快于Erlang自己可以完成的功能（BIF），以及以其他语言（NIF）本地实现的函数的接口，以及针对它们的特殊调度程序。显然还有更多的东西，但是可以像在BSD或Linux中使用内核那样考虑所有这些东西：构建更高级东西所需的低级东西。</p>
+<h4 id="Erlang-x2F-OTP"><a href="#Erlang-x2F-OTP" class="headerlink" title="Erlang &#x2F; OTP"></a>Erlang &#x2F; OTP</h4><p>到目前为止，所描述的等同于操作系统的内核。现在，需要用户空间组件的基础块。在Erlang中，这实际上就是OTP的目的。OTP指定应如何构建虚拟机上运行的“组件”。语言不仅具有“流程和消息”的含义，还具有一种定义良好的方式来组织代码。</p>
+<p>Erlang &#x2F; OTP系统由名为OTP Applications的组件构成。安装的每个Erlang版本或使用该版本构建的系统都附带了一些OTP应用程序。OTP应用程序基本上有两种变体：库应用程序（仅是模块的集合）和可运行应用程序（包含模块的集合），但还指定了存储在监管树下的有状态流程结构。</p>
+<ul>
+<li>库应用程序：模块的无状态集合</li>
+<li>可运行的应用程序：OTP应用程序可启动状态监督树结构，并在其中运行进程</li>
+<li>OTP应用程序：库或可运行应用程序，可以互换</li>
+</ul>
+<p>默认情况下，这两个OTP应用包括被称为<code>stdlib</code>，这是一个库应用程序包含核心标准库模块，如<code>list</code>或<code>maps</code>，并且<code>kernel</code>，是一个可运行的应用程序，并设置该核心结构为一个Erlang系统依赖于OTP应用程序工作。</p>
+<p>节点启动时，所有必需的OTP应用程序中的模块都将加载到内存中。然后<code>kernel</code>开始。<code>kernel</code>从此开始管理系统的生命周期。所有其他OTP应用程序及其配置都通过它来处理，因此独特的功能（例如分发和热代码更新）也可以通过它来处理。如果我们回到操作系统比较，则可以<code>kernel</code>像考虑<code>systemd</code>Linux内核那样思考OTP应用程序。</p>
+<p>其实，<code>kernel</code>和<code>stdlib</code>需要一个基本的工作Erlang壳仅有的两个应用程序。当键入<code>erl</code>（或<code>werl</code>在Windows上启动）时，这将引导VM以及<code>stdlib</code>预加载的VM 。其他所有内容都是可选的，后面可以加载 。</p>
+<p>标准的Erlang发行版包含以下应用程序：</p>
+<ul>
+<li>kernel</li>
+<li>stdlib</li>
+<li>crypto (cryptographic primitives)</li>
+<li>ssl (TLS termination library)</li>
+<li>inets (network services such as FTP or HTTP clients)</li>
+<li>ct (Common Test framework)</li>
+<li>wx (graphic toolkit)</li>
+<li>observer (a control panel to manage your Erlang node, building on <code>wx</code>)</li>
+<li>compiler (the Erlang compiler to build your own project)</li>
+</ul>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/2019/10/24/go-1024/" style="float: left;">
+        ← Go:构建Web Server
+    </a>
+    
+    
+    <a class="pull-right" href="/2019/09/01/go-20190901/">
+        Go学习笔记 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By sy. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="" style="color: #767D84">sy</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/sy-vendor" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
+</html>

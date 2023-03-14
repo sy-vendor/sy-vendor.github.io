@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********  Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>Erlang:gen_fsm与gen_statem | sy-vendor-blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="sy-vendor-blog">
+    <meta name="author" content="sy">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="sy-vendor-blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/C/" class="animsition-link">C<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/erlang/" class="animsition-link">erlang<small>(17)</small></a></li>
+				    
+				    <li><a href="/categories/go/" class="animsition-link">go<small>(20)</small></a></li>
+				    
+				    <li><a href="/categories/java/" class="animsition-link">java<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/other/" class="animsition-link">other<small>(12)</small></a></li>
+				    
+				</ul>
+        	</li>
+			
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">sy-vendor-blog</a></li>
+                            <li class="nolink"><span>Always </span>Fighting.</li>
+                            
+                            <li><a href="https://github.com/sy-vendor" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2019-04-18T17:28:41.000Z" itemprop="datePublished">
+          2019-04-19
+      </time>
+    
+</span>
+                <h1>Erlang:gen_fsm与gen_statem</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>从Erlang &#x2F; OTP 19开始，gen_fsm被gen_statem继承。即使在OTP中，ssl等也已转移到gen_statem。</p>
+<h4 id="状态机"><a href="#状态机" class="headerlink" title="状态机"></a>状态机</h4><p>在服务器等程序中，状态管理很重要。根据当前状态（S）和生成的事件（E）的组合，将该状态改变建模为要执行的处理（A）和下一状态（S’），如下例子。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">State(S) x Event(E) -&gt; Actions(A), State(S&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>这通常使用gen_fsm行为来实现，其中state（S）是函数名称，事件（E）由模式匹配显式表示。但gen_statem是gen_fsm的增强。</p>
+<h4 id="gen-fsm到gen-statem"><a href="#gen-fsm到gen-statem" class="headerlink" title="gen_fsm到gen_statem"></a>gen_fsm到gen_statem</h4><p>首先，gen_statem组织行为回调API， 它与gen_fsm类似的方法不兼容。 添加了如下功能：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- keep_state, repeat_state</span><br><span class="line">- callback_mode/1</span><br><span class="line">- postpone</span><br><span class="line">- next_event</span><br><span class="line">- state_enter</span><br><span class="line">- format_status</span><br><span class="line">- etc</span><br></pre></td></tr></table></figure>
+
+<h4 id="behavior"><a href="#behavior" class="headerlink" title="behavior"></a>behavior</h4><p>比较gen_fsm和gen_statem的行为。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">gen_fsm module                    Callback module</span><br><span class="line">--------------                    ---------------</span><br><span class="line">gen_fsm:start</span><br><span class="line">gen_fsm:start_link                -----&gt; Module:init/1</span><br><span class="line"></span><br><span class="line">gen_fsm:stop                      -----&gt; Module:terminate/3</span><br><span class="line"></span><br><span class="line">gen_fsm:send_event                -----&gt; Module:StateName/2</span><br><span class="line"></span><br><span class="line">gen_fsm:send_all_state_event      -----&gt; Module:handle_event/3</span><br><span class="line"></span><br><span class="line">gen_fsm:sync_send_event           -----&gt; Module:StateName/3</span><br><span class="line"></span><br><span class="line">gen_fsm:sync_send_all_state_event -----&gt; Module:handle_sync_event/4</span><br><span class="line"></span><br><span class="line">-                                 -----&gt; Module:handle_info/3</span><br><span class="line"></span><br><span class="line">-                                 -----&gt; Module:terminate/3</span><br><span class="line"></span><br><span class="line">-                                 -----&gt; Module:code_change/4</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">gen_statem module                        Callback module</span><br><span class="line">-----------------                        ---------------</span><br><span class="line">gen_statem:start</span><br><span class="line">gen_statem:start_link             -----&gt; Module:init/1</span><br><span class="line"></span><br><span class="line">Server start or code change       -----&gt; Module:callback_mode/0</span><br><span class="line"></span><br><span class="line">gen_statem:stop                   -----&gt; Module:terminate/3</span><br><span class="line"></span><br><span class="line">gen_statem:call</span><br><span class="line">gen_statem:cast</span><br><span class="line">erlang:send</span><br><span class="line">erlang:&#x27;!&#x27;                        -----&gt; Module:StateName/3</span><br><span class="line">                                         Module:handle_event/4</span><br><span class="line"></span><br><span class="line">-                                 -----&gt; Module:terminate/3</span><br><span class="line"></span><br><span class="line">-                                 -----&gt; Module:code_change/4</span><br></pre></td></tr></table></figure>
+
+<p>事实证明，回调正在减少。最重要的是，在gen_statem中，同步&#x2F;异步的使用是call &#x2F; cast。StateName &#x2F; 3在参数的开头采用了事件类型，它来接收调用&#x2F;强制转换等。info分支也在这里分支。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">% Module:StateName(EventType, EventContent, Data) -&gt; StateFunctionResult</span><br><span class="line">hello(&#123;call, From&#125;, eventname, Data) -&gt; ...;</span><br><span class="line">hello(cast, eventname, Data) -&gt; ...;</span><br><span class="line">hello(info, eventname, Data) -&gt; ...;</span><br></pre></td></tr></table></figure>
+
+<p>EventType有六种类型，包括后面描述的类型。这将处理程序集成到StateName &#x2F; 3中。</p>
+<p>虽然处理程序的返回值有以下几种类型：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;next_state, NextStateName, NewStateData&#125;</span><br><span class="line">&#123;next_state, NextStateName, NewStateData, hibernate&#125;</span><br><span class="line">&#123;next_state, NextStateName, NewStateData, Timeout&#125;</span><br></pre></td></tr></table></figure>
+
+<p>它也可以写为gen_fsm，但可以将多个动作（元组）写为数组。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;next_state, NextStateName, NewStateData&#125;</span><br><span class="line">&#123;next_state, NextStateName, NewStateData, [&#123;hibernate, true&#125;]&#125;</span><br><span class="line">&#123;next_state, NextStateName, NewStateData, [&#123;timeout, Time, Data1&#125;, &#123;state_timeout, Time, Data&#125;2]&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="KEEP-STATE"><a href="#KEEP-STATE" class="headerlink" title="KEEP_STATE"></a>KEEP_STATE</h4><p>当未在处理程序结束时转换状态时，gen_fsm显式指定了与其自身相同的状态名称。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hello(Event, Data) -&gt;</span><br><span class="line">    &#123;next_state, hello, Data&#125;.</span><br></pre></td></tr></table></figure>
+
+<p>可以使用keep_state明确表达此信息。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hello(cast, Event, Data) -&gt;</span><br><span class="line">    &#123;keep_state, Data&#125;.</span><br></pre></td></tr></table></figure>
+
+<p>如果数据相同，则只有keep_state_and_data就足够了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hello(cast, Event, Data) -&gt;</span><br><span class="line">    keep_state_and_data.</span><br></pre></td></tr></table></figure>
+
+<p>当您想要执行操作但不希望状态在使用稍后描述的超时等操作时转换时，可以使用此方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hello(cast, Event, Data) -&gt;</span><br><span class="line">    &#123;keep_state_and_data, [&#123;timeout, 1000, world&#125;]&#125;.</span><br></pre></td></tr></table></figure>
+
+<h4 id="callback-mode"><a href="#callback-mode" class="headerlink" title="callback_mode"></a>callback_mode</h4><p>call_stode &#x2F; 0的行为已添加到gen_statem中。这指定了如何实现回调，使用像gen_fsm这样的原子命名状态以及实现相应函数的样式<code>state_functions</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">callback_mode() -&gt; state_functions.</span><br></pre></td></tr></table></figure>
+
+<h4 id="handle-event-function"><a href="#handle-event-function" class="headerlink" title="handle_event_function"></a>handle_event_function</h4><p>在gen_fsm中，状态以atom命名。但是，如果要将某个数据容器的值视为状态，则将模式匹配为状态而不是原子可能更方便。<code>handle_event_function</code>通过返回callback_mode &#x2F; 0 ，可以用任何值表示状态。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">callback_mode() -&gt; handle_event_function.</span><br></pre></td></tr></table></figure>
+
+<p>只有<code>handle_event</code>一种类型的回调，可以通过仅匹配此函数的参数来单独处理。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">handle_event(EventType, EventContent, State, Data)</span><br></pre></td></tr></table></figure>
+
+<h4 id="State-Enter-Calls"><a href="#State-Enter-Calls" class="headerlink" title="State Enter Calls"></a>State Enter Calls</h4><p><code>callback_mode</code>在<code>state_enter</code>添加，您可以执行状态State Enter Calls执行一次。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">callback_mode() -&gt;</span><br><span class="line">    [state_functions, state_enter].</span><br><span class="line"></span><br><span class="line">StateName(enter, OldState, Data) -&gt;</span><br><span class="line">    &#123;keep_state_and_data, [&#123;state_timeout, 5000, SomeState&#125;]&#125;;</span><br><span class="line">StateName(cast, OldState, Data) -&gt;</span><br><span class="line">    &#123;next_state, SomeState, Data&#125;.</span><br></pre></td></tr></table></figure>
+
+<p>如果启用此模式，则所有事件都需要输入的处理程序实现。</p>
+<h4 id="Timeout"><a href="#Timeout" class="headerlink" title="Timeout"></a>Timeout</h4><p>gen_statem中有三种主要的超时方法。在服务器实现等中，超时模型非常重要。 它比gen_fsm更强大.。</p>
+<p><strong>Timeout Event：</strong></p>
+<p>通过返回如下操作来启动事件超时：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;next_state, NextState, Data, 10000&#125;</span><br><span class="line">&#123;next_state, NextState, Data, [&#123;timeout, 10000, EventContent&#125;]&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果在1000毫秒内没有下一个事件，则超时事件会上升。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NextState(timeout, Context, Data)</span><br></pre></td></tr></table></figure>
+
+<p>无论发生什么事件，都会取消此计时器。</p>
+<p><strong>State Timeout Event：</strong></p>
+<p>通过返回如下操作来启动状态超时：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;next_state, NextState, Data, [&#123;state_timeout, 10000, EventContent&#125;]&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果状态未在1000毫秒内转换，则超时事件会上升。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NextState(state_timeout, Context, Data)</span><br></pre></td></tr></table></figure>
+
+<p>无论转换到什么状态，都会取消此计时器。</p>
+<p><strong>Erlang Timer：</strong></p>
+<p>如果要独立管理跨越事件或状态更改的独立计时器，使用erlang：start_timer &#x2F; 3创建计时器并保留它。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Timer = erlang:start_timer(1000, self(), Data)</span><br></pre></td></tr></table></figure>
+
+<p>发生此计时器超时时，超时事件将以当前状态上升。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NextState(info, &#123;timeout, Timer, Data&#125;, Data)</span><br><span class="line">erlang:cancel_timer(Timer)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Postponing"><a href="#Postponing" class="headerlink" title="Postponing"></a>Postponing</h4><p>可以推迟已发生事件的操作。一旦状态转换，转发的事件就会排队并按顺序播放。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;keep_state, Data, [postpone]&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Self-Generated-Events"><a href="#Self-Generated-Events" class="headerlink" title="Self Generated Events"></a>Self Generated Events</h4><p>从状态机内部，可以向自己发送事件。在gen_fsm中，除了使用gen_statem发布之外没有其他事件，但是在某些情况下，由于回调处理而生成另一个事件。gen_statem <code>next_event</code>可以通过返回以下操作从内部发出事件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;keep_state, Data, [&#123;reply, From, ok&#125;, &#123;next_event, cast, Arg&#125;]&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>所有EventTypes <code>next_event</code>都可以通过，并且可以被视为与外部事件相同。</p>
+<h4 id="internal-event"><a href="#internal-event" class="headerlink" title="internal event"></a>internal event</h4><p><code>internal</code>EventType为，<code>next_event</code>只能通过发送。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;keep_state, Data, [&#123;reply, From, ok&#125;, &#123;next_event, internal, Arg&#125;]&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>相反，由于它不是<code>internal</code>从外部发送的，因此可以保证它是内部生成的自生成事件。其他EventTypes <code>next_event</code>无法区分为来自外部或来自外部，因此可以在内部关闭事件时使用它们。</p>
+<h4 id="Module-format-status-x2F-2"><a href="#Module-format-status-x2F-2" class="headerlink" title="Module:format_status&#x2F;2"></a>Module:format_status&#x2F;2</h4><p>可以预处理由sys：get_status &#x2F; 1,2和teminate转储输出的State值。可选的，因此不必导出。用于在状态较大时仅缩小重要信息，或防止输出重要信息。</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/2019/04/20/go-0420/" style="float: left;">
+        ← Go:rwmutex-and-sync.map
+    </a>
+    
+    
+    <a class="pull-right" href="/2019/04/15/erlang-0415/">
+        Erlang:gen.erl →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By sy. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="" style="color: #767D84">sy</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/sy-vendor" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
+</html>

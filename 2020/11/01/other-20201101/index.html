@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********  Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>笔记-网络部分 | sy-vendor-blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="sy-vendor-blog">
+    <meta name="author" content="sy">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="sy-vendor-blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/C/" class="animsition-link">C<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/erlang/" class="animsition-link">erlang<small>(17)</small></a></li>
+				    
+				    <li><a href="/categories/go/" class="animsition-link">go<small>(20)</small></a></li>
+				    
+				    <li><a href="/categories/java/" class="animsition-link">java<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/other/" class="animsition-link">other<small>(12)</small></a></li>
+				    
+				</ul>
+        	</li>
+			
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">sy-vendor-blog</a></li>
+                            <li class="nolink"><span>Always </span>Fighting.</li>
+                            
+                            <li><a href="https://github.com/sy-vendor" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2020-11-01T05:28:55.000Z" itemprop="datePublished">
+          2020-11-01
+      </time>
+    
+</span>
+                <h1>笔记-网络部分</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<p><strong>网络的字节序</strong><br>    网络字节顺序是TCP&#x2F;IP中规定好的一种数据表示格式,它与具体的CPU类型.操作系统等无关,从而可以保证数据在不同主机之间传输时能够被正确解释.网络字节顺序采用big endian排序方式.  </p>
+<p><strong>TCP三次握手</strong><br>    第一次握手:客户端将TCP报文标志位SYN置为1,随机产生一个序号值seq&#x3D;J,保存在TCP首部的序列号(Sequence Number)字段里,指明客户端打算连接的服务器的端口,并将该数据包发送给服务器端,发送完毕后,客户端进入SYN_SENT状态,等待服务器端确认.<br>    第二次握手:服务器端收到数据包后由标志位SYN&#x3D;1知道客户端请求建立连接,服务器端将TCP报文标志位SYN和ACK都置为1,ack&#x3D;J+1,随机产生一个序号值seq&#x3D;K,并将该数据包发送给客户端以确认连接请求,服务器端进入SYN_RCVD状态.<br>    第三次握手:客户端收到确认后,检查ack是否为J+1,ACK是否为1,如果正确则将标志位ACK置为1，ack&#x3D;K+1,并将该数据包发送给服务器端,服务器端检查ack是否为K+1,ACK是否为1,如果正确则连接建立成功,客户端和服务器端进入ESTABLISHED状态,完成三次握手,随后客户端与服务器端之间可以开始传输数据了.  </p>
+<p><strong>为什么要有TIME_WAIT这个状态?出现太多TIME_WAIT可能导致的后果?</strong><br>    假设最终的ACK丢失,主机2将重发FIN,主机1必须维护TCP状态信息以便可以重发最终的ACK,否则会发送RST,结果主机2认为发生错误.TCP实现必须可靠地终止连接的两个方向(全双工关闭),主机1必须进入TIME_WAIT状态,因为主机1可能面临重发最终ACK的情形.<br>    后果:在高并发短连接的TCP服务器上,当服务器处理完请求后立刻按照主动正常关闭连接.这个场景下,会出现大量socket处于TIMEWAIT状态.如果客户端的并发量持续很高,此时部分客户端就会显示连接不上.(持续的到达一定量的高并发短连接,会使服务器因端口资源不足而拒绝为一部分客户服务)<br>    解决:修改&#x2F;etc&#x2F;sysctl.conf中参数:<br>            ①net.ipv4.tcp_tw_reuse &#x3D; 1      #表示开启重用.允许将TIME-WAIT sockets重新用于新的TCP连接,默认为0,表示关闭<br>            ②net.ipv4.tcp_tw_recycle &#x3D; 1    #表示开启TCP连接中TIME-WAIT sockets的快速回收,默认为0,表示关闭.net.ipv4.tcp_timestamps开启时,net.ipv4.tcp_tw_recycle开启才能生效<br>            ③net.ipv4.tcp_timestamps &#x3D; 1    #表示开启TCP连接中TIME-WAIT sockets的快速回收,默认为0,表示关闭<br>            ④net.ipv4.tcp_fin_timeout &#x3D; 2   #用来设置保持在FIN_WAIT_2状态的时间</p>
+<p><strong>TCP与UDP的区别 适用范围</strong><br>    TCP和UDP是OSI模型中的运输层中的协议.CP提供可靠的通信传输,而UDP则常被用于让广播和细节控制交给应用的通信传输<br>    区别:1.TCP面向连接(如打电话要先拨号建立连接);UDP是无连接的,即发送数据之前不需要建立连接;<br>         2.TCP提供可靠的服务.也就是说,通过TCP连接传送的数据,无差错,不丢失,不重复,且按序到达;UDP尽最大努力交付,即不保证可靠交付;<br>         3.TCP面向字节流,实际上是TCP把数据看成一连串无结构的字节流;UDP是面向报文的,UDP没有拥塞控制,因此网络出现拥塞不会使源主机的发送速率降低(对实时应用很有用,如IP电话,实时视频会议等);<br>         4.每一条TCP连接只能是点到点的;UDP支持一对一,一对多,多对一和多对多的交互通信;<br>         5.TCP首部开销20字节;UDP的首部开销小,只有8个字节;<br>         6.TCP的逻辑通信信道是全双工的可靠信道,UDP则是不可靠信道.<br>    UDP应用场景:1.面向数据报方式;2.网络数据大多为短消息;3.拥有大量Client;4.对数据安全性无特殊要求;5.网络负担非常重,但对响应速度要求高</p>
+<p><strong>TCP四次挥手,最后一次ack如果客户端没收到怎么办,为什么挥手不能只有三次,为什么time_wait</strong><br>    第一次挥手:主机1(可以使客户端，也可以是服务器端),设置Sequence Number和Acknowledgment Number,向主机2发送一个FIN报文段;此时,主机1进入FIN_WAIT_1状态;这表示主机1没有数据要发送给主机2了<br>    第二次挥手:主机2收到了主机1发送的FIN报文段,向主机1回一个ACK报文段,Acknowledgment Number为Sequence Number加1;主机1进入FIN_WAIT_2状态;主机2告诉主机1,我“同意”你的关闭请求<br>    第三次挥手:主机2向主机1发送FIN报文段,请求关闭连接,同时主机2进入LAST_ACK状态<br>    第四次挥手:主机1收到主机2发送的FIN报文段,向主机2发送ACK报文段,然后主机1进入TIME_WAIT状态;主机2收到主机1的ACK报文段以后,就关闭连接;此时,主机1等待2MSL后依然没有收到回复,则证明服务端已正常关闭,那好,主机1也可以关闭连接了  </p>
+<pre><code>FIN\_WAIT\_1:其实FIN\_WAIT\_1和FIN\_WAIT\_2状态的真正含义都是表示等待对方的FIN报文.而这两种状态的区别是:FIN\_WAIT\_1状态实际上是当SOCKET在ESTABLISHED状态时,它想主动关闭连接,向对方发送了FIN报文,此时该SOCKET即进入到FIN\_WAIT\_1状态.而当对方回应ACK报文后,则进入到FIN\_WAIT\_2状态,当然在实际的正常情况下,无论对方何种情况下,都应该马上回应ACK报文,所以FIN\_WAIT\_1状态一般是比较难见到的,而FIN\_WAIT\_2状态还有时常常可以用netstat看到.(主动方)  
+FIN\_WAIT\_2:实际上FIN\_WAIT\_2状态下的SOCKET,表示半连接,也即有一方要求close连接,但另外还告诉对方,我暂时还有点数据需要传送给你(ACK信息),稍后再关闭连接.(主动方)  
+CLOSE\_WAIT:表示在等待关闭.当对方close一个SOCKET后发送FIN报文给自己,你系统毫无疑问地会回应一个ACK报文给对方,此时则进入到CLOSE\_WAIT状态.接下来呢,实际上你真正需要考虑的事情是察看你是否还有数据发送给对方,如果没有的话,那么你也就可以close这个SOCKET,发送FIN报文给对方,也即关闭连接.所以你在CLOSE\_WAIT状态下,需要完成的事情是等待你去关闭连接.(被动方)  
+LAST\_ACK:被动关闭一方在发送FIN报文后,最后等待对方的ACK报文.当收到ACK报文后,也即可以进入到CLOSED可用状态了.(被动方)  
+TIME\_WAIT:表示收到了对方的FIN报文,并发送出了ACK报文,就等2MSL后即可回到CLOSED可用状态了.如果FIN WAIT1状态下,收到了对方同时带FIN标志和ACK标志的报文时,可以直接进入到TIME\_WAIT状态,而无须经过FIN\_WAIT\_2状态.(主动方)  
+CLOSED:表示连接中断.  
+</code></pre>
+<p><strong>对于socket编程,accept方法是干什么的,在三次握手中属于第几次</strong><br>    accept()函数需要给连接分配资源,发生在三次握手完成后,客户端和服务器就建立了tcp连接.这时可以调用accept函数获得此连接  </p>
+<p><strong>tcp怎么保证有序传输的,tcp的快速重传和拥塞机制</strong><br>    主机每次发送数据时,TCP就给每个数据包分配一个序列号并且在一个特定的时间内等待接收主机对分配的这个序列号进行确认,如果发送主机在一个特定时间内没有收到接收主机的确认,则发送主机会重传此数据包.接收主机利用序列号对接收的数据进行确认,以便检测对方发送的数据是否有丢失或者乱序等,接收主机一旦收到已经顺序化的数据,它就将这些数据按正确的顺序重组成数据流并传递到高层进行处理.<br>    过程步骤:<br>            (1)为了保证数据包的可靠传递,发送方必须把已发送的数据包保留在缓冲区;<br>            (2)并为每个已发送的数据包启动一个超时定时器;<br>            (3)如在定时器超时之前收到了对方发来的应答信息(可能是对本包的应答,也可以是对本包后续包的应答),则释放该数据包占用的缓冲区;<br>            (4)否则,重传该数据包,直到收到应答或重传次数超过规定的最大次数为止;<br>            (5)接收方收到数据包后,先进行CRC循环冗余校验(Cyclic Redundancy Check, CRC)校验,如果正确则把数据交给上层协议,然后给发送方发送一个累计应答包,表明该数据已收到,如果接收方正好也有数据要发给发送方,应答包也可方在数据包中捎带过去.<br>    快速重传:TCP数据接收端在收到一个顺序错乱的报文段时候,会立即产生一个ACK通知到发送方,目的是告诉发送方,发过来的数据中顺序不对,中间缺少了一个分组,并且告知这个分组的编号,希望对方立即重传这个分组(当收到3个重复报文的ack时,TCP不等待重传超时时间,立即重传该数据包)<br>    拥塞机制:就是防止过多的数据注入到网络中,从而使网络中的路由器或链路不致过载.要注意用拥塞控制与流量控制的区别,拥塞控制是一个全局性的过程,涉及到所有的额主机,路由器,以及与降低网(拥塞控制的算法有:慢开始、拥塞避免、快重传、快恢复四种)  </p>
+<p><strong>设计一个基于udp差不多可靠的算法</strong><br>    1)针对数据完整性 –&gt; 加上一个16或者32位的CRC验证字段<br>    2)针对乱序 –&gt; 加上一个数据包序列号SEQ<br>    3)针对丢包 –&gt; 需要确认和重传机制,就是和Tcp类似的Ack机制<br>    4)针对协议字段 –&gt; proto字段,标识当前使用协议</p>
+<p><strong>http与https区别?https解决了什么问题,怎么解决?https的握手过程?</strong><br>    HTTP:是互联网上应用最为广泛的一种网络协议,是一个客户端和服务器端请求和应答的标准(TCP),用于从WWW服务器传输超文本到本地浏览器的传输协议,它可以使浏览器更加高效,使网络传输减少.<br>    HTTPS:是以安全为目标的HTTP通道,简单讲是HTTP的安全版,即HTTP下加入SSL层,HTTPS的安全基础是SSL,因此加密的详细内容就需要SSL.(HTTPS协议的主要作用可以分为两种:一种是建立一个信息安全通道,来保证数据传输的安全;另一种就是确认网站的真实性)<br>    区别:<br>        1)https协议需要到ca申请证书,一般免费证书较少,因而需要一定费用.<br>        2)http是超文本传输协议,信息是明文传输,https则是具有安全性的ssl加密传输协议.<br>        3)http和https使用的是完全不同的连接方式,用的端口也不一样,前者是80,后者是443.<br>        4)http的连接很简单,是无状态的;HTTPS协议是由SSL+HTTP协议构建的可进行加密传输,身份认证的网络协议,比http协议安全.<br>    https解决的问题:HTTP它是不安全.由于HTTP天生明文传输的特性,在HTTP的传输过程中,任何人都有可能从中截获、修改或者伪造请求发送,所以可以认为HTTP是不安全的;在HTTP的传输过程中不会验证通信方的身份,因此HTTP信息交换的双方可能会遭到伪装,也就是没有用户验证;在HTTP的传输过程中,接收方和发送方并不会验证报文的完整性<br>    怎么解决:<br>        a.加密(Encryption),HTTPS通过对数据加密来使其免受窃听者对数据的监听,这就意味着当用户在浏览网站时,没有人能够监听他和网站之间的信息交换,或者跟踪用户的活动,访问记录等,从而窃取用户信息.<br>        b.数据一致性(Data integrity),数据在传输的过程中不会被窃听者所修改,用户发送的数据会完整的传输到服务端,保证用户发的是什么,服务器接收的就是什么.<br>        c.身份认证(Authentication),是指确认对方的真实身份,也就是证明你是你(可以比作人脸识别),它可以防止中间人攻击并建立用户信任.<br>    握手过程:<br>        1)客户端发起HTTPS请求<br>        2)服务端的配置(采用HTTPS协议的服务器必须要有一套数字证书,可以是自己制作或者CA证书.区别就是自己颁发的证书需要客户端验证通过,才可以继续访问,而使用CA证书则不会弹出提示页面.这套证书其实就是一对公钥和私钥.公钥给别人加密使用,私钥给自己解密使用)<br>        3)传送证书(这个证书其实就是公钥,只是包含了很多信息,如证书的颁发机构,过期时间等)<br>        4)客户端解析证书(这部分工作是有客户端的TLS来完成的,首先会验证公钥是否有效,比如颁发机构,过期时间等,如果发现异常,则会弹出一个警告框,提示证书存在问题.如果证书没有问题,那么就生成一个随即值,然后用证书对该随机值进行加密)<br>        5)传送加密信息(这部分传送的是用证书加密后的随机值,目的就是让服务端得到这个随机值,以后客户端和服务端的通信就可以通过这个随机值来进行加密解密了)<br>        6)服务段解密信息(服务端用私钥解密后,得到了客户端传过来的随机值(私钥),然后把内容通过该值进行对称加密.所谓对称加密就是,将信息和私钥通过某种算法混合在一起,这样除非知道私钥,不然无法获取内容,而正好客户端和服务端都知道这个私钥,所以只要加密算法够彪悍,私钥够复杂,数据就够安全)<br>        7)传输加密后的信息(这部分信息是服务段用私钥加密后的信息,可以在客户端被还原)<br>        8)客户端解密信息(客户端用之前生成的私钥解密服务段传过来的信息,于是获取了解密后的内容)</p>
+<p><strong>tcp粘包半包问题处理</strong><br>    定义一个缓冲区或者是使用标准库&#x2F;框架提供的容器循环存放接收到数据,边接收变判断缓冲区数据是否满足包头大小,如果满足包头大小再判断缓冲区剩下数据是否满足包体大小,如果满足则提取.<br>    过程:<br>        1.接收数据存入缓冲区尾部<br>        2.缓冲区数据满足包头大小否<br>        3.缓冲区数据不满足包头大小,回到第1步;缓冲区数据满足包头大小则取出包头,接着判断缓冲区剩余数据满足包头中定义的包体大小否,不满足则回到第1步<br>        4.缓冲区数据满足一个包头大小和一个包体大小之和,则取出包头和包体进行使用,此处使用可以采用拷贝方式转移缓冲区数据到另外一个地方,也可以为了节省内存直接采取调用回调函数的方式完成数据使用.<br>        5.清除缓冲区的第一个包头和包体信息,做法一般是将缓冲区剩下的数据拷贝到缓冲区首部覆盖”第一个包头和包体信息”部分即可.</p>
+<p><strong>keepalive是什么</strong><br>    用于监测两个设备之间的数据链路是否正常工作,或防止链路中断的信息</p>
+<p><strong>tcp选项及其作用</strong><br>    窗口扩大因子:使TCP的窗口定义从16bit增加到32bit.这并不是通过修改TCP首部来实现的,TCP首部仍然使用16bit,而是通过定义一个选项实现对16bit的扩大操作来完成的.于是TCP在内部将实际的窗口大小维持为32bit的值<br>    SACK选择确认选项:使TCP只重新发送丢失的包,不用发送后续所有的包<br>    MSS:为了达到最佳的传输效能,TCP协议在建立连接的时候通常要协商双方的MSS值,这个值TCP协议在实现的时候往往用MTU值代替</p>
+<p><strong>socket什么情况下可读</strong><br>    1.socket接收缓冲区中已经接收的数据的字节数大于等于socket接收缓冲区低潮限度的当前值;对这样的socket的读操作不会阻塞,并返回一个大于0的值(即:准备好读入的数据的字节数).我们可以用socket选项SO_RCVLOWAT来设置此低潮限度,对于TCP和UDPSocket,其缺省值为1;<br>    2.连接的读这一半关闭(即:接收到对方发过来的FIN的TCP连接).对于这样的socket的读操作将不阻塞,并且返回0(即:文件结束符,FIN包体长度为0字节);<br>    3.socket是一个用于监听的socket,并且已经完成的连接数为非0.这样的socket处于可读状态,是因为socket收到了对方的connect请求,执行了三次握手的第一步:对方发送SYN请求过来,使监听socket处于可读状态;正常情况下,这样的socket上的accept操作不会阻塞;<br>    4.有一个socket有异常错误条件待处理.对于这样的socket的读操作将不会阻塞,并且返回一个错误(-1),errno则设置成明确的错误条件.这些待处理的错误也可通过指定socket选项SO_ERROR调用getSockOpt来取得并清除;</p>
+<p><strong>nginx的epoll模型</strong><br>    io多路复用的机制,可以监视多个描述符的读&#x2F;写等事件,一旦某个描述符就绪(一般是读或者写事件发生了),就能够将发生的事件通知给关心的应用程序去处理该事件</p>
+<p><strong>SYN Flood攻击</strong><br>    SYN Flood(半开放攻击)是一种拒绝服务(DDoS)攻击,其目的是通过消耗所有可用的服务器资源使服务器不可用于合法流量.通过重复发送初始连接请求(SYN)数据包,攻击者能够压倒目标服务器机器上的所有可用端口,导致目标设备根本不响应合法流量.  </p>
+<p><strong>流量控制,拥塞控制</strong><br>    流量控制:<br>       1.定义:如果发送者发送数据过快,接收者来不及接收,那么就会有分组丢失.为了避免分组丢失,控制发送者的发送速度,使接收者来得及接收<br>       2.目的:防止分组丢失<br>       3.实现:由滑动窗口协议(连续ARQ协议)实现.滑动窗口协议既保证了分组无差错、有序接收,也实现了流量控制.主要的方式就是接收方返回的ACK中会包含自己的接收窗口的大小,并且利用大小来控制发送方的数据发送.<br>    拥塞控制:<br>       1.拥塞控制是作用于网络的,它是防止过多的数据注入到网络中,避免出现网络负载过大的情况<br>       2.方法:a)慢开始、拥塞避免;b)快重传、快恢复<br>           ①慢开始算法:发送方维持一个叫做拥塞窗口cwnd(congestion window)的状态变量.拥塞窗口的大小取决于网络的拥塞程度,并且动态地在变化.发送方让自己的发送窗口等于拥塞窗口,另外考虑到接受方的接收能力,发送窗口可能小于拥塞窗口;慢开始算法的思路就是,不要一开始就发送大量的数据,先探测一下网络的拥塞程度，也就是说由小到大逐渐增加拥塞窗口的大小<br>           ②拥塞避免算法:拥塞避免算法让拥塞窗口缓慢增长,即每经过一个往返时间RTT就把发送方的拥塞窗口cwnd加1,而不是加倍.这样拥塞窗口按线性规律缓慢增长;无论是在慢开始阶段还是在拥塞避免阶段,只要发送方判断网络出现拥塞(其根据就是没有按时收到确认,虽然没有收到确认可能是其他原因的分组丢失,但是因为无法判定,所以都当做拥塞来处理),就把慢开始门限ssthresh设置为出现拥塞时的发送窗口大小的一半(但不能小于2).然后把拥塞窗口cwnd重新设置为1,执行慢开始算法.这样做的目的就是要迅速减少主机发送到网络中的分组数,使得发生拥塞的路由器有足够时间把队列中积压的分组处理完毕<br>           ③快重传算法:快重传要求接收方在收到一个失序的报文段后就立即发出重复确认(为的是使发送方及早知道有报文段没有到达对方,可提高网络吞吐量约20%)而不要等到自己发送数据时捎带确认.快重传算法规定,发送方只要一连收到三个重复确认就应当立即重传对方尚未收到的报文段,而不必继续等待设置的重传计时器时间到期<br>           ④快恢复算法:当发送方连续收到三个重复确认时,就执行”乘法减小”算法,把ssthresh门限减半(为了预防网络发生拥塞).但是接下去并不执行慢开始算法</p>
+<p><strong>TCP如何保证可靠性</strong><br>    检验和:通过检验和的方式,接收端可以检测出来数据是否有差错和异常,假如有差错就会直接丢弃TCP段,重新发送.TCP在计算检验和时,会在TCP首部加上一个12字节的伪首部.检验和总共计算3部分:TCP首部、TCP数据、TCP伪首部<br>    序列号&#x2F;确认应答:发送端发送信息给接收端,接收端会回应一个包,这个包就是应答包;只要发送端有一个包传输,接收端没有回应确认包(ACK包),都会重发.或者接收端的应答包,发送端没有收到也会重发数据.这就可以保证数据的完整性<br>    超时重传:发送出去的数据包到接收到确认包之间的时间,如果超过了这个时间会被认为是丢包了,需要重传<br>    最大消息长度:在建立TCP连接的时候,双方约定一个最大的长度(MSS)作为发送的单位,重传的时候也是以这个单位来进行重传.理想的情况下是该长度的数据刚好不被网络层分块<br>    滑动窗口控制:窗口的大小是在无需等待确认包的情况下,发送端还能发送的最大数据量.这个机制的实现就是使用了大量的缓冲区,通过对多个段进行确认应答的功能.通过下一次的确认包可以判断接收端是否已经接收到了数据,如果已经接收了就从缓冲区里面删除数据<br>    拥塞控制:网络拥堵时,引入一个拥塞窗口;发送开始时定义拥塞窗口大小为1;每次收到一个ACK应答,拥塞窗口加1;而在每次发送数据时,发送窗口取拥塞窗口与接送段接收窗口最小者</p>
+<p><strong>tcpdump抓包分析数据包</strong><br>    例:sudo tcpdump -i eth0 port 8080 and “tcp[tcpflags] &amp; (tcp-syn) !&#x3D; 0”  </p>
+<p><strong>http报文格式</strong><br>    请求报文:请求行(Request-Line);请求头部(Request Header Fields);回车换行(CRLF);消息体(Message Body)<br>    响应报文:状态行(Status-Line);响应头部(Response Header Fields);回车换行(CRLF);消息体(Message Body)</p>
+<p><strong>http1.1、http1.0区别,http2.0特性</strong><br>    区别:<br>        1)长连接:HTTP 1.0需要使用keep-alive参数来告知服务器端要建立一个长连接,而HTTP1.1默认支持长连接.HTTP是基于TCP&#x2F;IP协议的,创建一个TCP连接是需要经过三次握手的,有一定的开销,如果每次通讯都要重新建立连接的话,对性能有影响.因此最好能维持一个长连接,可以用个长连接来发多个请求.<br>         2)节约带宽:HTTP 1.1支持只发送header信息(不带任何body信息),如果服务器认为客户端有权限请求服务器,则返回100,否则返回401.客户端如果接受到100,才开始把请求body发送到服务器.这样当服务器返回401的时候,客户端就可以不用发送请求body了,节约了带宽.另外HTTP还支持传送内容的一部分.这样当客户端已经有一部分的资源后,只需要跟服务器请求另外的部分资源即可.这是支持文件断点续传的基础.<br>         3)HOST域:现在可以web server例如tomcat,设置虚拟站点是非常常见的,也即是说,web server上的多个虚拟站点可以共享同一个ip和端口.HTTP1.0是没有host域的,HTTP1.1才支持这个参数.<br>    http2.0特性:<br>         1)二进制分帧:在应用层(HTTP)和传输层(TCP)之间增加一个二进制分帧层.它能把一个数据划分封装为更小更便捷的数据.首先是在单链接多资源方式中,减少了服务端的链接压力,内存占用更少,链接吞吐量更大<br>         2)首部压缩:首部表在HTTP2.0使用了首部压缩的技术.使报头更紧凑,更快速传输,有利于移动网络环境.减少每次通讯的数据量,使网络拥塞状态得以改善<br>         3)流量控制:<br>             流量基于HTTP链接的每一跳进行,而非端到端的控制;<br>             流量控制基于窗口更新帧进行,即接收方广播自己准备接收某个数据流的多少字节,以及对整个链接要接收多少个字节;<br>             流量控制有方向性,即接收方可能根据自己的情况为没个流乃至整个链接设置任意窗口大小<br>             流量控制可以由接收方禁用,包括针对个别的流和针对整个链接;<br>             帧的类型决定了流量控制是否适用于帧,目前只有DATA帧服从流量控制,所有其他类型的帧并不会消耗流量控制窗口的空间.这保证了重要的控制帧不会被流量控制阻塞<br>         4)多路复用:可以并行交错的发送请求和响应,这些请求和响应之间互不影响;只使用一个链接即可并行发送多个请求和响应;消除不必要的延迟,从而减少页面加载的时间;不必再为绕过HTTP1.x限制而多做很多工作<br>         5)请求优先级:服务器可以根据流的优先级控制资源分配(CPU、内存、宽带),而在响应数据准备好之后,优先将最高优先级的帧发送给客户端.浏览器可以在发现资源时立即分派请求,指定每个流的优先级,让服务器决定最优的响应次序.这样请求就不用排队了,既节省了时间,又最大限度的利用了每个连接.<br>         6)服务器推送:服务端推送是一种在客户端请求之前发送数据的机制,服务器可以对一个客户端请求发送多个响应.服务器向客户端推送资源无需客户端明确的请求</p>
+<p><strong>http3</strong><br>    HTTP&#x2F;3最大的改造就是使用了QUIC<br>       a.0-RTT:通过使用类似TCP快速打开的技术,缓存当前会话的上下文,在下次恢复会话的时候,只需要将之前的缓存传递给服务端验证通过就可以进行传输了<br>       b.多路复用:QUIC原生就实现了这个功能,并且传输的单个数据流可以保证有序交付且不会影响其他的数据流<br>       c.加密认证的报文:<br>       d.向前纠错机制:每个数据包除了它本身的内容之外,还包括了部分其他数据包的数据,因此少量的丢包可以通过其他包的冗余数据直接组装而无需重传.向前纠错牺牲了每个数据包可以发送数据的上限,但是减少了因为丢包导致的数据重传,因为数据重传将会消耗更多的时间(包括确认数据包丢失、请求重传、等待新数据包等步骤的时间消耗)<br>    总结:<br>       HTTP&#x2F;1.x有连接无法复用、队头阻塞、协议开销大和安全因素等多个缺陷<br>       HTTP&#x2F;2通过多路复用、二进制流、Header压缩等等技术,极大地提高了性能,但是还是存在着问题的<br>       QUIC基于UDP实现,是HTTP&#x2F;3中的底层支撑协议,该协议基于UDP,又取了TCP中的精华,实现了即快又可靠的协议</p>
+<p><strong>http1.1长连接时,发送一个请求阻塞了,返回什么状态码</strong><br>    一直阻塞,会导致timeout,返回408</p>
+<p><strong>udp调用connect有什么作用</strong><br>    1.因为UDP可以是一对一,多对一,一对多,或者多对多的通信,所以每次调用sendto&#x2F;recvfrom时都必须指定目标IP和端口号.通过调用connect建立一个端到端的连接,就可以和TCP一样使用send&#x2F;recv传递数据,而不需要每次都指定目标IP和端口号.但是它和TCP不同的是它没有三次握手的过程<br>    2.还可以通过在已建立连接的UDP套接字上,再次调用connect实现其他功能:指定新的IP地址和端口号;断开连接</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/2020/11/07/other-20201107/" style="float: left;">
+        ← 笔记-操作系统部分
+    </a>
+    
+    
+    <a class="pull-right" href="/2020/10/25/go-1025/">
+        Go学习笔记2 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By sy. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="" style="color: #767D84">sy</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/sy-vendor" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
+</html>

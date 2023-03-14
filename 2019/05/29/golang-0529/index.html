@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********  Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>slice行为 | sy-vendor-blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="sy-vendor-blog">
+    <meta name="author" content="sy">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="sy-vendor-blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/C/" class="animsition-link">C<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/erlang/" class="animsition-link">erlang<small>(17)</small></a></li>
+				    
+				    <li><a href="/categories/go/" class="animsition-link">go<small>(20)</small></a></li>
+				    
+				    <li><a href="/categories/java/" class="animsition-link">java<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/other/" class="animsition-link">other<small>(12)</small></a></li>
+				    
+				</ul>
+        	</li>
+			
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">sy-vendor-blog</a></li>
+                            <li class="nolink"><span>Always </span>Fighting.</li>
+                            
+                            <li><a href="https://github.com/sy-vendor" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2019-05-29T13:18:27.000Z" itemprop="datePublished">
+          2019-05-29
+      </time>
+    
+</span>
+                <h1>slice行为</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<h4 id="slice的结构"><a href="#slice的结构" class="headerlink" title="slice的结构"></a>slice的结构</h4><ul>
+<li>指向数组的指针</li>
+<li>长度</li>
+<li>容量</li>
+</ul>
+<h4 id="作为函数参数传递时："><a href="#作为函数参数传递时：" class="headerlink" title="作为函数参数传递时："></a>作为函数参数传递时：</h4><p>Golang函数参数传递基本上是按值传递的，slice也与之相同，因此传递变量的指针是不同的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">func main()&#123;</span><br><span class="line">    s：= [] int &#123; 1，2，3 &#125;</span><br><span class="line">    fmt.Printf(&quot;%p\n&quot;, &amp;s)   // 0x1040a0b0</span><br><span class="line">    someFunc(s)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func someFunc(s [] int)&#123;</span><br><span class="line">    fmt.Printf(&quot;%p\n&quot;, &amp;s)   //与0x1040a0c0不同</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>为什么可以通过slice仍然可以访问相同的元素？原因是由值传递的slice所保持的数组的指针是相同的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">func main()&#123;</span><br><span class="line">    s：= [] int &#123; 1，2，3 &#125;</span><br><span class="line">    fmt.Printf(&quot;%p\n&quot;, &amp;s)   // 0x1040a0b0 </span><br><span class="line">    fmt.Printf(&quot;%p\n&quot;, &amp;s[0])   // 0x10410020</span><br><span class="line">    someFunc(s)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func someFunc(s [] int)&#123;</span><br><span class="line">    fmt.Printf(&quot;%p\n&quot;, &amp;s)   // 0x1040a0c0 </span><br><span class="line">    fmt.Printf(&quot;%p\n&quot;, &amp;s[0])   //与0x10410020相同</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="append"><a href="#append" class="headerlink" title="append:"></a>append:</h4><ul>
+<li>对于容量不足时，append会导致数组重定位</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">func main()&#123; </span><br><span class="line">    s：= [] int &#123; 1，2，3 &#125; </span><br><span class="line">    fmt.Printf(&quot;%P\n&quot;, &amp;s)   // 0X1040a0b0 </span><br><span class="line">    fmt.Printf(&quot;%P\n&quot;, &amp;s[0])   // 0x10410020</span><br><span class="line"> </span><br><span class="line">    s = append(s, 4)</span><br><span class="line">    fmt.Printf(&quot;%p\n&quot;, &amp;s)   // 0x1040a0b0 </span><br><span class="line">    fmt.Printf(&quot;%p\n&quot;, &amp;s[0])   // 0x10454000指向新数组 </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>当由函数参数传递时</strong></p>
+<p>如果append到函数内部，它将与调用者Slice看到的array不同。因此，函数内的array增加，但调用者的Slice不会改变。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">    s := []int&#123;1, 2, 3&#125;</span><br><span class="line">    fmt.Printf(&quot;%p\n&quot;, &amp;s[0])  // 0x10410020</span><br><span class="line"></span><br><span class="line">    add(s)</span><br><span class="line">    fmt.Println(s)  // [1 2 3]</span><br><span class="line">    fmt.Printf(&quot;%p\n&quot;, &amp;s[0])  // 0x10410020</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func add(s []int) &#123;</span><br><span class="line">    fmt.Printf(&quot;before: %p\n&quot;, &amp;s[0])  // 0x10410020</span><br><span class="line"></span><br><span class="line">    s = append(s, 4)</span><br><span class="line">    fmt.Println(s)  // [1 2 3 4]</span><br><span class="line">    fmt.Printf(&quot;after: %p\n&quot;, &amp;s[0])  // 指针变为0x10454020 </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>当容量足够时</li>
+</ul>
+<p>当有足够的容量时,Slice不会重新排列，所以内容永远不会改变。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">    s := make([]int, 3, 4)</span><br><span class="line">    s[0], s[1], s[2] = 1, 2, 3</span><br><span class="line">    fmt.Printf(&quot;%p\n&quot;, &amp;s)  // 0x1040a0b0</span><br><span class="line">    fmt.Printf(&quot;%p\n&quot;, &amp;s[0])  // 0x10410020</span><br><span class="line"></span><br><span class="line">    s = append(s, 4)</span><br><span class="line">    fmt.Printf(&quot;%p\n&quot;, &amp;s)  // 0x1040a0b0</span><br><span class="line">    fmt.Printf(&quot;%p\n&quot;, &amp;s[0])  // 0x10410020指向同一个数组</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>当由函数参数传递时</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">    s := make([]int, 3, 4)</span><br><span class="line">    s[0], s[1], s[2] = 1, 2, 3</span><br><span class="line">    fmt.Printf(&quot;%p\n&quot;, &amp;s[0])  // 0x10410020</span><br><span class="line"></span><br><span class="line">    add(s)</span><br><span class="line">    fmt.Println(s)  // [1 2 3]</span><br><span class="line">    fmt.Printf(&quot;%p\n&quot;, &amp;s[0])  // 0X10410020指代相同的地址</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func add(s []int) &#123;</span><br><span class="line">    fmt.Printf(&quot;before: %p\n&quot;, &amp;s[0])  // 0x10410020</span><br><span class="line"></span><br><span class="line">    s = append(s, 4)</span><br><span class="line">    fmt.Println(s)  // [1 2 3 4]</span><br><span class="line">    fmt.Printf(&quot;after: %p\n&quot;, &amp;s[0])  // 0x10410020指向同一个数组 </span><br></pre></td></tr></table></figure>
+
+<p>即使它们指向相同的地址，打印值也不同。这是因为调用者的Slice长度尚未更新。<code>add()</code>在函数中，它<code>append</code>也<code>4</code>变为len ，但由于调用者的是一个单独的对象，因此<code>3</code>它保持不变。</p>
+<p>在这种情况下，如果还想更新调用者</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">    s := make([]int, 3, 4)</span><br><span class="line">    s[0], s[1], s[2] = 1, 2, 3</span><br><span class="line">    fmt.Printf(&quot;%p\n&quot;, &amp;s[0])</span><br><span class="line"></span><br><span class="line">    add(s)</span><br><span class="line">    s = s[:cap(s)]  // 追加</span><br><span class="line">    fmt.Println(s)  // [1 2 3 4]</span><br><span class="line">    fmt.Printf(&quot;%p\n&quot;, &amp;s[0])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Slice行为："><a href="#Slice行为：" class="headerlink" title="Slice行为："></a>Slice行为：</h4><ul>
+<li>slice有一个指向数组的指针</li>
+<li>通过参数传递的slice是通过值传递的，所以它是不同的。但指针内部指向的数组是相同的</li>
+<li>append时array指向发生重定位等变化</li>
+</ul>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/2019/06/19/erlang0619/" style="float: left;">
+        ← 笔记一
+    </a>
+    
+    
+    <a class="pull-right" href="/2019/05/12/go-0512/">
+        Go:reflect →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By sy. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="" style="color: #767D84">sy</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/sy-vendor" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
+</html>

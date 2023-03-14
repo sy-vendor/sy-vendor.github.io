@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********  Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>Go:Panic与Recover | sy-vendor-blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="sy-vendor-blog">
+    <meta name="author" content="sy">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="sy-vendor-blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/C/" class="animsition-link">C<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/erlang/" class="animsition-link">erlang<small>(17)</small></a></li>
+				    
+				    <li><a href="/categories/go/" class="animsition-link">go<small>(20)</small></a></li>
+				    
+				    <li><a href="/categories/java/" class="animsition-link">java<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/other/" class="animsition-link">other<small>(12)</small></a></li>
+				    
+				</ul>
+        	</li>
+			
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">sy-vendor-blog</a></li>
+                            <li class="nolink"><span>Always </span>Fighting.</li>
+                            
+                            <li><a href="https://github.com/sy-vendor" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2021-09-29T08:42:37.000Z" itemprop="datePublished">
+          2021-09-29
+      </time>
+    
+</span>
+                <h1>Go:Panic与Recover</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<h4 id="1-Panic例子"><a href="#1-Panic例子" class="headerlink" title="1.Panic例子"></a>1.Panic例子</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (  </span><br><span class="line">    &quot;fmt&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func fullName(firstName *string, lastName *string) &#123;  </span><br><span class="line">    if firstName == nil &#123;</span><br><span class="line">        panic(&quot;runtime error: first name cannot be nil&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    if lastName == nil &#123;</span><br><span class="line">        panic(&quot;runtime error: last name cannot be nil&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    fmt.Printf(&quot;%s %s\n&quot;, *firstName, *lastName)</span><br><span class="line">    fmt.Println(&quot;returned normally from fullName&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func main() &#123;  </span><br><span class="line">    firstName := &quot;SS&quot;</span><br><span class="line">    fullName(&amp;firstName, nil)</span><br><span class="line">    fmt.Println(&quot;returned normally from main&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行输出:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">panic: runtime error: last name cannot be nil</span><br><span class="line"></span><br><span class="line">goroutine 1 [running]:  </span><br><span class="line">main.fullName(0xc00006af58, 0x0)  </span><br><span class="line">    /tmp/sandbox210590465/prog.go:12 +0x193</span><br><span class="line">main.main()  </span><br><span class="line">    /tmp/sandbox210590465/prog.go:20 +0x4d</span><br></pre></td></tr></table></figure>
+
+<p>从例子中可以看到，当给firstName分配值并未给lastName分配，调用fullName，当执行到 <strong>lastName &#x3D;&#x3D; nil</strong> 时，程序会被终止，传递给panic函数的参数被打印出来，然后是堆栈信息 。由于程序在执行 panic 函数调用之后终止，后面代码将不再执行。</p>
+<p>所以该程序首先打印传递给<code>panic</code>函数的消息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">panic: runtime error: last name cannot be nil</span><br></pre></td></tr></table></figure>
+
+<p>然后打印堆栈信息，根据堆栈跟踪，一项一项的打印。</p>
+<h4 id="2-例2"><a href="#2-例2" class="headerlink" title="2.例2"></a>2.例2</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (  </span><br><span class="line">    &quot;fmt&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func slicePanic() &#123;  </span><br><span class="line">    n := []int&#123;5, 7, 4&#125;</span><br><span class="line">    fmt.Println(n[4])</span><br><span class="line">    fmt.Println(&quot;normally returned from a&quot;)</span><br><span class="line">&#125;</span><br><span class="line">func main() &#123;  </span><br><span class="line">    slicePanic()</span><br><span class="line">    fmt.Println(&quot;normally returned from main&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>例子中试图访问切片中<code>n[4]</code>的无效索引，则该程序将有以下输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">panic: runtime error: index out of range [4] with length 3</span><br><span class="line"></span><br><span class="line">goroutine 1 [running]:  </span><br><span class="line">main.slicePanic()  </span><br><span class="line">    /tmp/sandbox942516049/prog.go:9 +0x1d</span><br><span class="line">main.main()  </span><br><span class="line">    /tmp/sandbox942516049/prog.go:13 +0x22</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-在Panic中使用defer"><a href="#3-在Panic中使用defer" class="headerlink" title="3.在Panic中使用defer"></a>3.在Panic中使用defer</h4><p>当一个函数遇到panic时，它的执行会停止，但是任何defer的函数都会被执行，然后控制权返回给它的调用者。这个过程一直持续到当前 goroutine 的所有函数都已经返回，此时程序会打印panic消息，然后是堆栈跟踪，然后终止。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (  </span><br><span class="line">    &quot;fmt&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func fullName(firstName *string, lastName *string) &#123;  </span><br><span class="line">    defer fmt.Println(&quot;deferred call in fullName&quot;)</span><br><span class="line">    if firstName == nil &#123;</span><br><span class="line">        panic(&quot;runtime error: first name cannot be nil&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    if lastName == nil &#123;</span><br><span class="line">        panic(&quot;runtime error: last name cannot be nil&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    fmt.Printf(&quot;%s %s\n&quot;, *firstName, *lastName)</span><br><span class="line">    fmt.Println(&quot;returned normally from fullName&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func main() &#123;  </span><br><span class="line">    defer fmt.Println(&quot;deferred call in main&quot;)</span><br><span class="line">    firstName := &quot;SS&quot;</span><br><span class="line">    fullName(&amp;firstName, nil)</span><br><span class="line">    fmt.Println(&quot;returned normally from main&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上例唯一更改是添加了defer函数调用，现在的输出为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">deferred call in fullName  </span><br><span class="line">deferred call in main  </span><br><span class="line">panic: runtime error: last name cannot be nil</span><br><span class="line"></span><br><span class="line">goroutine 1 [running]:  </span><br><span class="line">main.fullName(0xc00006af28, 0x0)  </span><br><span class="line">    /tmp/sandbox451943841/prog.go:13 +0x23f</span><br><span class="line">main.main()  </span><br><span class="line">    /tmp/sandbox451943841/prog.go:22 +0xc6</span><br></pre></td></tr></table></figure>
+
+<p>当程序遇到panic时，首先执行defer的函数调用，然后控制返回到执行defer调用的调用者，依此类推。 最后是堆栈跟踪信息。</p>
+<h4 id="4-panic中使用recover"><a href="#4-panic中使用recover" class="headerlink" title="4.panic中使用recover"></a>4.panic中使用recover</h4><p>仅当在defer函数内部调用时，recover才有用。在defer函数内执行recover恢复正常执行来停止panic，并检索传递给panic函数调用的错误消息。如果在defer函数之外调用recover，并不会停止panic。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (  </span><br><span class="line">    &quot;fmt&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func recoverFullName() &#123;  </span><br><span class="line">    if r := recover(); r!= nil &#123;</span><br><span class="line">        fmt.Println(&quot;recovered from &quot;, r)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func fullName(firstName *string, lastName *string) &#123;  </span><br><span class="line">    defer recoverFullName()</span><br><span class="line">    if firstName == nil &#123;</span><br><span class="line">        panic(&quot;runtime error: first name cannot be nil&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    if lastName == nil &#123;</span><br><span class="line">        panic(&quot;runtime error: last name cannot be nil&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    fmt.Printf(&quot;%s %s\n&quot;, *firstName, *lastName)</span><br><span class="line">    fmt.Println(&quot;returned normally from fullName&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func main() &#123;  </span><br><span class="line">    defer fmt.Println(&quot;deferred call in main&quot;)</span><br><span class="line">    firstName := &quot;SS&quot;</span><br><span class="line">    fullName(&amp;firstName, nil)</span><br><span class="line">    fmt.Println(&quot;returned normally from main&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>调用<code>recover()</code>返回传递给<code>panic</code>函数调用的值， 当<code>fullName</code>函数调用时，recoverFullName<code>()</code>将调用defer函数，用于<code>recover()</code>停止panic，打印结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">recovered from  runtime error: last name cannot be nil  </span><br><span class="line">returned normally from main  </span><br><span class="line">deferred call in main</span><br></pre></td></tr></table></figure>
+
+<p>当程序在 <strong>lastName &#x3D;&#x3D; nil</strong> 发生panic时。<code>recoverFullName</code>函数被调用，该函数又调用<code>recover()</code>以重新获得对panic的控制。并将返回值传递给的<code>panic()</code>，因此它打印：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">recovered from  runtime error: last name cannot be nil  </span><br></pre></td></tr></table></figure>
+
+<p>执行后<code>recover()</code>，panic停止，控制权返回给调用者，在这种情况下，是<code>main</code>函数。程序从 <strong>fmt.Println(“returned normally from main”)</strong> 开始继续正常执行，<code>main的</code>panic已经recover了。它打印<code>returned normally from main</code> 后跟<code>deferred call in main</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (  </span><br><span class="line">    &quot;fmt&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func recoverInvalidAccess() &#123;  </span><br><span class="line">    if r := recover(); r != nil &#123;</span><br><span class="line">        fmt.Println(&quot;Recovered&quot;, r)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func invalidSliceAccess() &#123;  </span><br><span class="line">    defer recoverInvalidAccess()</span><br><span class="line">    n := []int&#123;5, 7, 4&#125;</span><br><span class="line">    fmt.Println(n[4])</span><br><span class="line">    fmt.Println(&quot;normally returned from a&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func main() &#123;  </span><br><span class="line">    invalidSliceAccess()</span><br><span class="line">    fmt.Println(&quot;normally returned from main&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行上面的程序会输出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Recovered runtime error: index out of range [4] with length 3  </span><br><span class="line">normally returned from main  </span><br></pre></td></tr></table></figure>
+
+<h4 id="5-recover后获取stack跟踪"><a href="#5-recover后获取stack跟踪" class="headerlink" title="5.recover后获取stack跟踪"></a>5.recover后获取stack跟踪</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (  </span><br><span class="line">    &quot;fmt&quot;</span><br><span class="line">    &quot;runtime/debug&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func recoverFullName() &#123;  </span><br><span class="line">    if r := recover(); r != nil &#123;</span><br><span class="line">        fmt.Println(&quot;recovered from &quot;, r)</span><br><span class="line">        debug.PrintStack()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func fullName(firstName *string, lastName *string) &#123;  </span><br><span class="line">    defer recoverFullName()</span><br><span class="line">    if firstName == nil &#123;</span><br><span class="line">        panic(&quot;runtime error: first name cannot be nil&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    if lastName == nil &#123;</span><br><span class="line">        panic(&quot;runtime error: last name cannot be nil&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    fmt.Printf(&quot;%s %s\n&quot;, *firstName, *lastName)</span><br><span class="line">    fmt.Println(&quot;returned normally from fullName&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func main() &#123;  </span><br><span class="line">    defer fmt.Println(&quot;deferred call in main&quot;)</span><br><span class="line">    firstName := &quot;SS&quot;</span><br><span class="line">    fullName(&amp;firstName, nil)</span><br><span class="line">    fmt.Println(&quot;returned normally from main&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的例子中，使用<code>debug.PrintStack()</code>打印堆栈信息。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">recovered from  runtime error: last name cannot be nil  </span><br><span class="line">goroutine 1 [running]:  </span><br><span class="line">runtime/debug.Stack(0x37, 0x0, 0x0)  </span><br><span class="line">    /usr/local/go-faketime/src/runtime/debug/stack.go:24 +0x9d</span><br><span class="line">runtime/debug.PrintStack()  </span><br><span class="line">    /usr/local/go-faketime/src/runtime/debug/stack.go:16 +0x22</span><br><span class="line">main.recoverFullName()  </span><br><span class="line">    /tmp/sandbox771195810/prog.go:11 +0xb4</span><br><span class="line">panic(0x4a1b60, 0x4dc300)  </span><br><span class="line">    /usr/local/go-faketime/src/runtime/panic.go:969 +0x166</span><br><span class="line">main.fullName(0xc0000a2f28, 0x0)  </span><br><span class="line">    /tmp/sandbox771195810/prog.go:21 +0x1cb</span><br><span class="line">main.main()  </span><br><span class="line">    /tmp/sandbox771195810/prog.go:30 +0xc6</span><br><span class="line">returned normally from main  </span><br><span class="line">deferred call in main </span><br></pre></td></tr></table></figure>
+
+<p>从输出中可以了解到panic被恢复并<code>recovered from runtime error: last name cannot be nil</code>打印出来了之后，打印堆栈跟踪。然后在panic恢复后打印</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">returned normally from main  </span><br><span class="line">deferred call in main </span><br></pre></td></tr></table></figure>
+
+<h4 id="6-panic、recover和Goroutines"><a href="#6-panic、recover和Goroutines" class="headerlink" title="6.panic、recover和Goroutines"></a>6.panic、recover和Goroutines</h4><p>Recover 仅在从恐慌的同一个 <strong>goroutine</strong> 中调用时才起作用。无法从不同 <strong>goroutine</strong> 中发生的panic中恢复过来。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (  </span><br><span class="line">    &quot;fmt&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func recovery() &#123;  </span><br><span class="line">    if r := recover(); r != nil &#123;</span><br><span class="line">        fmt.Println(&quot;recovered:&quot;, r)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func sum(a int, b int) &#123;  </span><br><span class="line">    defer recovery()</span><br><span class="line">    fmt.Printf(&quot;%d + %d = %d\n&quot;, a, b, a+b)</span><br><span class="line">    done := make(chan bool)</span><br><span class="line">    go divide(a, b, done)</span><br><span class="line">    &lt;-done</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func divide(a int, b int, done chan bool) &#123;  </span><br><span class="line">    fmt.Printf(&quot;%d / %d = %d&quot;, a, b, a/b)</span><br><span class="line">    done &lt;- true</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func main() &#123;  </span><br><span class="line">    sum(5, 0)</span><br><span class="line">    fmt.Println(&quot;normally returned from main&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的例子中，该函数<code>divide()</code>将发生panic。因为 b 是零并且零不能做除数。该<code>sum()</code>函数调用一个defer函数<code>recovery()</code>，用于从panic中恢复。该函数<code>divide()</code>作为单独的 goroutine 调用，在<code>done channel</code><a target="_blank" rel="noopener" href="https://golangbot.com/channels"></a>等待，确保<code>divide()</code>完成并执行。</p>
+<p>该例中panic将无法recover。这是因为该<code>recovery</code>函数存在于不同的 goroutine 中，而panic发生在<code>divide()</code>不同 goroutine中的函数中。因此recover是不可能的。</p>
+<p>这个例子打印如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">5 + 0 = 5  </span><br><span class="line">panic: runtime error: integer divide by zero</span><br><span class="line"></span><br><span class="line">goroutine 18 [running]:  </span><br><span class="line">main.divide(0x5, 0x0, 0xc0000a2000)  </span><br><span class="line">    /tmp/sandbox877118715/prog.go:22 +0x167</span><br><span class="line">created by main.sum  </span><br><span class="line">    /tmp/sandbox877118715/prog.go:17 +0x1a9</span><br></pre></td></tr></table></figure>
+
+<p>可以从输出中看出panic并未recover。 如果<code>divide()</code>在同一个 goroutine 中调用该函数，就会从panic中recover过来</p>
+<p>如果将上面例子中 <code>go divide(a, b, done)</code> 改为 <code>divide(a, b, done)</code> ，panic将会被recover，因为panic发生在同一个 goroutine 中，则它将打印：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">5 + 0 = 5  </span><br><span class="line">recovered: runtime error: integer divide by zero  </span><br><span class="line">normally returned from main  </span><br></pre></td></tr></table></figure>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/2022/11/01/golang-20221101/" style="float: left;">
+        ← Golang中的Goroutine，Channel与WaitGroup
+    </a>
+    
+    
+    <a class="pull-right" href="/2021/07/15/go-210715/">
+        Go:udp简单使用 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By sy. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="" style="color: #767D84">sy</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/sy-vendor" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    
+                    
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
+</html>
